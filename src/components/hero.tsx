@@ -7,7 +7,9 @@ const Hero = () => {
         The Sky Is Fake is a revolution. 
       </h1>
       <h2 className="text-2xl md:text-4xl font-semibold tracking-widest">
-        We know that they know that we know. We don't care. & they don't care either.  
+        We know that they know that we know. We don't care. & they don't care either. 
+        <br />
+        <em className="text-xl">Or do they? </em>
       </h2>
     </div>
   )

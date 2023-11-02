@@ -7,14 +7,12 @@ const desktopItems = [
   { label: 'Research', href: '/' },
   { label: 'About', href: '#about' },
   { label: 'Gallery', href: '#gallery' },
-  { label: 'Archive', href: '#archive' },
 ];
 
 const mobileItems = [
   { label: 'Research', href: '/' },
   { label: 'About', href: '#about' },
   { label: 'Gallery', href: '#gallery' },
-  { label: 'Archive', href: '#archive' },
 ]
 
 const Header = () => {
@@ -62,7 +60,7 @@ const Header = () => {
 
       <div className={isNavOpen ? "showMenuNav bg-white" : "hideMenuNav"}> 
 
-      <ul className="text-5xl flex flex-col px-4 space-y-8 font-thin">
+      <ul className="text-5xl flex flex-col px-4 space-y-8 tracking-wider">
         <hr className="border-black mt-8" />
           {mobileItems.map((mobileItem) => (
             <li key={mobileItem.href} className="relative">
@@ -77,7 +75,7 @@ const Header = () => {
       <div className="flex justify-between px-4 mb-32">
         <div className="font-light">
           <Link href="/" className="">
-            example@email.com
+            help@theskyisfake.org
           </Link>
         </div>
       </div>

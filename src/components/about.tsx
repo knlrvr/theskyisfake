@@ -17,9 +17,8 @@ const About = () => {
       <div className="w-[100%] md:w-[50%]">
         <p className="font-light text-lg">
           Our team of researchers & field scientists have dedicated themselves to exposing
-          the truth about our sky. The truth that they've kept from us for as long as it's been known.
-          The truth that they've paid trillions of dollars to conceal. The truth that we will
-          reveal. 
+          the truth about our sky. The truth that they've paid trillions of dollars to conceal. 
+          The truth that we will reveal. 
           <br /><br />
           You guessed it. 
           <span className="ml-2 font-extrabold">The sky is fake</span>.

@@ -1,6 +1,5 @@
 'use client'
 
-import type { Metadata } from 'next'
 import './globals.css'
 import Header from '@/components/layout/header'
 import Footer from '@/components/layout/footer'
@@ -19,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="">
-      <ClerkProvider publishableKey='pk_test_cmlnaHQtY2F0dGxlLTY3LmNsZXJrLmFjY291bnRzLmRldiQ'>
+      <ClerkProvider publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY as string}>
         <ConvexProviderWithClerk client={convex} useAuth={useAuth}>
           <div className="max-w-6xl mx-auto p-4">
             <Header />

@@ -6,9 +6,7 @@ import { SignInButton, useUser } from '@clerk/clerk-react'
 import { api } from '../../convex/_generated/api';
 import { useMutation, useQuery } from 'convex/react';
 
-import Link from 'next/link'
 import Image from 'next/image'
-import { BsLayers, BsPinAngle, BsPuzzle } from 'react-icons/bs';
 
 const Gallery = () => {
 
@@ -107,7 +105,7 @@ const Gallery = () => {
       </div>
 
 
-      <span className="mt-12 mb-8 font-semibold tracking-wider text-xl">
+      <span className="mt-20 mb-8 font-semibold tracking-wider text-xl">
         &mdash; Gallery
       </span>
       <ul className=" columns-1 md:columns-2 lg:columns-3 xl:columns-4">

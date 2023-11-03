@@ -108,7 +108,7 @@ const Gallery = () => {
       <span className="mt-20 mb-8 font-semibold tracking-wider text-xl">
         &mdash; Gallery
       </span>
-      <ul className=" columns-1 md:columns-2 lg:columns-3 xl:columns-4">
+      <ul className=" columns-1 sm:columns-2 md:columns-3 lg:columns-4">
         
         {posts.map((post) => (
           <li key={post._id} className="break-inside-avoid-column mb-4">

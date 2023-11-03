@@ -93,7 +93,7 @@ const Header = () => {
         <ul className="text-5xl flex flex-col px-4 tracking-wider my-8 space-y-8">
             {mobileItems.map((mobileItem) => (
               <li key={mobileItem.href} className="relative">
-                <Link href={mobileItem.href}>
+                <Link href={mobileItem.href} onClick={() => void setNavOpen((prev) => !prev)}>
                   {mobileItem.label}
                 </Link>
               </li>

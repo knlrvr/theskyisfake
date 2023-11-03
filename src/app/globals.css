@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
+* {
     scroll-behavior: smooth !important;
 }
 
@@ -46,4 +46,5 @@ body {
     stroke-dashoffset: -134;
     stroke-width: 6;
 }
+
   

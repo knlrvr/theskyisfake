@@ -2,7 +2,7 @@ import React from 'react'
 
 const Hero = () => {
   return (
-    <div className="pt-24 pb-16 flex flex-col space-y-8">
+    <div className="pt-24 pb-8 flex flex-col space-y-8">
       <h1 className="text-6xl md:text-8xl font-semibold tracking-wider">
         The Sky Is Fake is a revolution. 
       </h1>

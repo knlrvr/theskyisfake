@@ -11,7 +11,7 @@ const About = () => {
           alt="suspicious fish"
           height="1000"
           width="1000"
-          className="h-64 object-center object-cover"
+          className="h-32 md:h-48 object-top object-cover"
         />
       </div>
       <div className="w-[100%] md:w-[50%]">

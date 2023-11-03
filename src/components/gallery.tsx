@@ -1,11 +1,14 @@
 'use client'
 
 import React, { useState, useRef, FormEvent } from 'react'
-import { useUser } from '@clerk/clerk-react'
-import Link from 'next/link'
+import { SignInButton, useUser } from '@clerk/clerk-react'
 
 import { api } from '../../convex/_generated/api';
 import { useMutation, useQuery } from 'convex/react';
+
+import Link from 'next/link'
+import Image from 'next/image'
+import { json } from 'stream/consumers';
 
 const Gallery = () => {
 
@@ -19,6 +22,7 @@ const Gallery = () => {
 
   const imageInput = useRef<HTMLInputElement>(null);
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
+  // const [imageContinent, setImageContinent] = useState<string>('');
 
   async function handleSendImage(event: FormEvent) {
     event.preventDefault();
@@ -40,34 +44,77 @@ const Gallery = () => {
     imageInput.current!.value = '';
   }
 
-
+  // const locationOptions = [
+  //   'Select Continent',
+  //   'Asia',
+  //   'Africa',
+  //   'Europe',
+  //   'North America',
+  //   'South America',
+  //   'Oceania',
+  //   'Antarctica',
+  // ]
 
   return (
-    <div className="flex flex-col">
-      gallery
+    <div id="gallery" className="flex flex-col">
+
+      <div className="bg-[#222] text-white p-8">
+        <span className="text-2xl font-semibold tracking-widest">
+          Ready to join one of our field teams? Upload your photos to be featured in our gallery! 
+        </span>
+
+      {user ? (
+        <form onSubmit={handleSendImage} className="flex flex-col space-y-4 mt-8">
+          <input
+            type="file"
+            accept="image/*"
+            ref={imageInput}
+            onChange={(event) => setSelectedImage(event.target.files![0])}
+            className=""
+            disabled={selectedImage !== null}
+          />
+          {/* <select
+            id="continent"
+            placeholder='Select Continent'
+            value={imageContinent}
+            onChange={(e) => setImageContinent(e.currentTarget.value)}
+            className="text-[#222] w-fit p-1 pr-[4.2rem] rounded-full"
+          >
+            {locationOptions.map((option, index) => (
+              <option key={index} value={option}>
+                {option}
+              </option>
+            ))}
+          </select> */}
+          <input
+            type="submit"
+            value="Upload"
+            disabled={selectedImage === null}
+            className="w-fit rounded-full bg-blue-400 p-1 px-6 cursor-pointer hover:bg-blue-600 duration-300 text-white"
+          />
+        </form>
+        ) : (
+        <div className="mt-8">
+          <p className="text-neutral-400">
+            To upload photos, you must sign in. 
+            <span className="text-blue-400"> <SignInButton/> </span> now!
+          </p>
+        </div>
+      )}
+      </div>
 
 
-      <form onSubmit={handleSendImage}>
-        <input
-          type="file"
-          accept="image/*"
-          ref={imageInput}
-          onChange={(event) => setSelectedImage(event.target.files![0])}
-          className=""
-          disabled={selectedImage !== null}
-        />
-        <input
-          type="submit"
-          value="Upload"
-          disabled={selectedImage === null}
-        />
-      </form>
-
-      <ul className="columns-3 space-y-4">
+      <ul className="mt-12 columns-1 md:columns-2 lg:columns-3 xl:columns-4">
+        
         {posts.map((post) => (
-          <li key={post._id}>
+          <li key={post._id} className="break-inside-avoid-column mb-4">
+            <div className="flex justify-between items-center mb-1">
+              <span className="text-xs text-neutral-500 font-mono">@{post.author}</span>
+              <span className="">{post.location}</span>
+              <span className="text-xs text-neutral-500 font-mono">&mdash; {new Date(post._creationTime).toLocaleTimeString()}</span>
+            </div>
             {post.format === "image" && (
-              <Image post={post} />
+              <Images post={post} />
             )}
           </li>
         ))}
@@ -76,8 +123,10 @@ const Gallery = () => {
   )
 }
 
-function Image({ post }: { post: { url: string } }) {
-  return <img src={post.url} height="full" width="full" className="object-cover w-fit h-auto" />;
+function Images({ post }: { post: { url: string } }) {
+  return (
+    <Image src={post.url} alt="user uploaded image" height={1000} width={1000} className="object-cover w-fit h-full rounded-lg" />
+  );
 }
 
 export default Gallery

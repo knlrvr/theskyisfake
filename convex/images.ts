@@ -4,11 +4,14 @@ import { query } from "./_generated/server";
 export const getPosts = query({
   args: {},
   handler: async (ctx) => {
-    const posts = await ctx.db.query("posts").collect();
+    const posts = await ctx.db
+    .query("posts")
+    .order("desc")
+    .collect();
     return Promise.all(
       posts.map(async (post) => ({
         ...post,
-        // If the message is an "image" its `body` is a `StorageId`
+        // If the post is an "image" its `body` is a `StorageId`
         ...(post.format === "image"
           ? { url: await ctx.storage.getUrl(post.body) }
           : {}),
@@ -16,8 +19,6 @@ export const getPosts = query({
     );
   },
 });
-
-
 
 import { mutation } from "./_generated/server";
 

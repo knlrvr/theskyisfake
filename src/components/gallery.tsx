@@ -73,7 +73,7 @@ const Gallery = () => {
             accept="image/*"
             ref={imageInput}
             onChange={(event) => setSelectedImage(event.target.files![0])}
-            className=""
+            className="w-fit"
             disabled={selectedImage !== null}
           />
           {/* <select

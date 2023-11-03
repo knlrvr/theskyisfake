@@ -8,7 +8,7 @@ import { useMutation, useQuery } from 'convex/react';
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { json } from 'stream/consumers';
+import { BsLayers, BsPinAngle, BsPuzzle } from 'react-icons/bs';
 
 const Gallery = () => {
 
@@ -38,7 +38,10 @@ const Gallery = () => {
       throw new Error(`Upload failed: ${JSON.stringify(json)}`);
     }
     const { storageId } = json;
-    await uploadImage({ storageId, author: name });
+    await uploadImage({ 
+      storageId, 
+      author: name 
+    });
 
     setSelectedImage(null);
     imageInput.current!.value = '';
@@ -58,8 +61,8 @@ const Gallery = () => {
   return (
     <div id="gallery" className="flex flex-col mb-12">
 
-      <div className="bg-[#222] text-white p-8">
-        <span className="text-2xl font-semibold tracking-widest">
+      <div className="">
+        <span className="text-2xl md:text-4xl font-semibold tracking-widest">
           Ready to join one of our worldwide field teams? Upload your photos to be featured in our gallery! 
         </span>
 
@@ -104,14 +107,17 @@ const Gallery = () => {
       </div>
 
 
-      <ul className="mt-12 columns-1 md:columns-2 lg:columns-3 xl:columns-4">
+      <span className="mt-12 mb-8 font-semibold tracking-wider text-xl">
+        &mdash; Gallery
+      </span>
+      <ul className=" columns-1 md:columns-2 lg:columns-3 xl:columns-4">
         
         {posts.map((post) => (
           <li key={post._id} className="break-inside-avoid-column mb-4">
             <div className="flex justify-between items-center mb-1">
-              <span className="text-xs text-neutral-600 font-mono">@{post.author}</span>
+              <span className="text-xs text-neutral-500 font-semibold tracking-wide">@{post.author}</span>
               <span className="">{post.location}</span>
-              <span className="text-xs text-neutral-400 font-light">&mdash; {new Date(post._creationTime).toLocaleTimeString()}</span>
+              <span className="text-xs text-neutral-400 font-mono">&mdash; {new Date(post._creationTime).toLocaleTimeString()}</span>
             </div>
             {post.format === "image" && (
               <Images post={post} />

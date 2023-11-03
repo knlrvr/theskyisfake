@@ -1,16 +1,21 @@
 import React from 'react'
+import Image from 'next/image'
 
 const Hero = () => {
   return (
-    <div className="pt-24 pb-8 flex flex-col space-y-8">
-      <h1 className="text-6xl md:text-8xl font-semibold tracking-wider">
-        The Sky Is Fake is a revolution. 
-      </h1>
-      <h2 className="text-2xl md:text-4xl font-semibold tracking-widest">
-        We know that they know that we know. We don&apos;t care. & they don&apos;t care either. 
-        <br />
-        <em className="text-lg font-light">Or do they? </em>
-      </h2>
+    <div className="flex flex-col items-start gap-8 pb-20 pt-24">
+      <span className="font-extrabold tracking-wide leading-normal text-4xl md:text-6xl">
+        The Sky Is Fake is more than an idea. It&apos;s a revolution.
+      </span>
+      <div className="w-[100%]">
+        <Image
+          src="https://images.unsplash.com/photo-1494253109108-2e30c049369b"
+          alt=""
+          height="1000"
+          width="1000"
+          className="h-48 md:h-64 object-center object-cover w-full"
+        />
+      </div>
     </div>
   )
 }

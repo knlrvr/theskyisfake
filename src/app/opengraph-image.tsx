@@ -16,7 +16,7 @@ export const contentType = 'image/png'
 export default async function Image() {
   // Font
   const playfair = fetch(
-    new URL('../../public/PlayfarDisplay-Regular.ttf', import.meta.url)
+    new URL('../../public/PlayfairDisplay-Regular.ttf', import.meta.url)
   ).then((res) => res.arrayBuffer())
  
   return new ImageResponse(

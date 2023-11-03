@@ -21,13 +21,13 @@ import Image from 'next/image';
 const desktopItems = [
   { label: 'About', href: '#about' },
   { label: 'Gallery', href: '#gallery' },
-  { label: 'Disclaimer', href: '#footer' },
+  // { label: 'Disclaimer', href: '#footer' },
 ];
 
 const mobileItems = [
   { label: 'About', href: '#about' },
   { label: 'Gallery', href: '#gallery' },
-  { label: 'Disclaimer', href: '#footer' },
+  // { label: 'Disclaimer', href: '#footer' },
 ]
 
 const Header = () => {

@@ -17,12 +17,12 @@ const About = () => {
       <div className="w-[100%] md:w-[50%]">
         <p className="font-light text-lg">
           Our team of researchers & field scientists have dedicated themselves to exposing
-          the truth about our sky. The truth that they've paid trillions of dollars to conceal. 
+          the truth about our sky. The truth that they&apos;ve paid trillions of dollars to conceal. 
           The truth that we will reveal. 
           <br /><br />
           You guessed it. 
           <span className="ml-2 font-extrabold">The sky is fake</span>.
-          <br /> And we're here to prove it. 
+          <br /> And we&apos;re here to prove it. 
         </p>
       </div>
     </div>

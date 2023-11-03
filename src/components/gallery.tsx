@@ -56,11 +56,11 @@ const Gallery = () => {
   // ]
 
   return (
-    <div id="gallery" className="flex flex-col">
+    <div id="gallery" className="flex flex-col mb-12">
 
       <div className="bg-[#222] text-white p-8">
         <span className="text-2xl font-semibold tracking-widest">
-          Ready to join one of our field teams? Upload your photos to be featured in our gallery! 
+          Ready to join one of our worldwide field teams? Upload your photos to be featured in our gallery! 
         </span>
 
       {user ? (
@@ -90,14 +90,14 @@ const Gallery = () => {
             type="submit"
             value="Upload"
             disabled={selectedImage === null}
-            className="w-fit rounded-full bg-blue-400 p-1 px-6 cursor-pointer hover:bg-blue-600 duration-300 text-white"
+            className="w-fit rounded-full bg-yellow-400 p-1 px-6 cursor-pointer hover:bg-yellow-300 duration-300 text-white"
           />
         </form>
         ) : (
         <div className="mt-8">
           <p className="text-neutral-400">
             To upload photos, you must sign in. 
-            <span className="text-blue-400"> <SignInButton/> </span> now!
+            <span className="text-yellow-400"> <SignInButton mode='modal' afterSignInUrl='/' /> </span> now!
           </p>
         </div>
       )}
@@ -109,9 +109,9 @@ const Gallery = () => {
         {posts.map((post) => (
           <li key={post._id} className="break-inside-avoid-column mb-4">
             <div className="flex justify-between items-center mb-1">
-              <span className="text-xs text-neutral-500 font-mono">@{post.author}</span>
+              <span className="text-xs text-neutral-600 font-mono">@{post.author}</span>
               <span className="">{post.location}</span>
-              <span className="text-xs text-neutral-500 font-mono">&mdash; {new Date(post._creationTime).toLocaleTimeString()}</span>
+              <span className="text-xs text-neutral-400 font-light">&mdash; {new Date(post._creationTime).toLocaleTimeString()}</span>
             </div>
             {post.format === "image" && (
               <Images post={post} />

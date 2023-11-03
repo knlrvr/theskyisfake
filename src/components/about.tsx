@@ -7,11 +7,11 @@ const About = () => {
     <div className="flex flex-col md:flex-row items-start gap-8 pb-20">
       <div className="w-[100%] md:w-[50%]">
         <Image
-          src="https://images.unsplash.com/photo-1508004680771-708b02aabdc0"
-          alt="suspicious fish"
+          src="https://images.unsplash.com/photo-1494253109108-2e30c049369b"
+          alt=""
           height="1000"
           width="1000"
-          className="h-32 md:h-48 object-top object-cover"
+          className="h-64 object-center object-cover"
         />
       </div>
       <div className="w-[100%] md:w-[50%]">

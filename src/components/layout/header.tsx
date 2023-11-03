@@ -4,7 +4,9 @@ import React, { useState } from 'react'
 import Link from 'next/link'
 
 import {
-  BsBoxArrowUpRight
+  BsBoxArrowUpRight,
+  BsThreeDotsVertical,
+  BsBoxArrowInRight
 } from 'react-icons/bs'
 
 import {
@@ -17,18 +19,22 @@ import Image from 'next/image';
 
 
 const desktopItems = [
-  { label: 'Gallery', href: '#gallery' },
   { label: 'About', href: '#about' },
+  { label: 'Gallery', href: '#gallery' },
+  { label: 'Disclaimer', href: '#footer' },
 ];
 
 const mobileItems = [
+  { label: 'About', href: '#about' },
   { label: 'Gallery', href: '#gallery' },
-  { label: 'About', href: '#about' }
+  { label: 'Disclaimer', href: '#footer' },
 ]
 
 const Header = () => {
 
-  const [isNavOpen, setNavOpen] = useState(false);
+  const [isNavOpen, setNavOpen] = useState<boolean>(false);
+  const [isExpandedDt, setIsExpandedDt] = useState<boolean>(false);
+  const [isExpandedMb, setIsExpandedMb] = useState<boolean>(false);
 
   const { user } = useUser();
 
@@ -51,7 +57,7 @@ const Header = () => {
               ))}
 
               {user ? (
-                <li className="relative flex items-center space-x-1 border border-[#333] rounded-full p-1 px-2">
+                <li className="relative flex items-center space-x-1 border border-[#333] rounded-full p-1 px-2 relative">
                   <Image 
                     src={user.imageUrl ?? ''}
                     alt={`${user}'s profile picture`}
@@ -59,7 +65,20 @@ const Header = () => {
                     height="1000"
                     className="w-6 h-6 rounded-full bg-gradient from-blue-200 to-red-200"
                   />
-                  <SignOutButton />
+                  <button 
+                    onClick={() => void setIsExpandedDt((prev) => !prev)}>
+                    <BsThreeDotsVertical />
+                  </button>
+
+                  {isExpandedDt && (
+                    <div className="absolute top-10 right-0 border rounded-md bg-neutral-200">
+                      <ul className="w-24">
+                        <li className="w-24 flex justify-end text-right p-2 px-4">
+                          <SignOutButton />
+                        </li>
+                      </ul>
+                    </div>
+                  )}
                 </li>
               ) : (
                 <li className="font-semibold border border-[#333] p-1 px-2 rounded-full">
@@ -102,9 +121,52 @@ const Header = () => {
         </ul>
         <hr className="border-black mx-4" />
 
+        <div className="flex items-center justify-between px-4 mt-12">
+          <Link href="https://github.com/knlrvr/theskyisfake"
+            className="flex items-center space-x-4">
+            <span>Learn More</span>
+            <BsBoxArrowUpRight className="text-sm" />
+          </Link>
 
-        <div className="flex flex-col px-4 mb-32">
+          <div className="flex items-center space-x-2 relative">
+            {user && (
+            <Image 
+              src={user?.imageUrl ?? ''}
+              alt={`${user}'s profile picture`}
+              width="1000"
+              height="1000"
+              className="w-6 h-6 rounded-full bg-gradient from-blue-200 to-red-200"
+            />
+            )}
+            {user ? ( 
+            <button onClick={() => void setIsExpandedMb((prev) => !prev)}>
+              <BsThreeDotsVertical className="text-xl" />
+            </button>
+            ) : (
+              <div className="flex items-center space-x-4">
+                <SignInButton mode='modal' afterSignInUrl='/' />
+                <BsBoxArrowInRight />
+              </div>
+            )}
 
+            {isExpandedMb && (
+              <div className="absolute top-10 right-2 border rounded-md bg-neutral-200">
+                <ul className="w-24">
+                  <li className="w-24 flex justify-end p-2 px-4"
+                    onClick={() => void setIsExpandedMb(false)}>
+                    <SignOutButton />
+                  </li>
+                </ul>
+              </div>
+            )}
+          </div>
+        </div>
+
+        <div className="p-4 mt-16">
+          <p className="text-sm">
+            For more information or support, please contact 
+            <span className="text-yellow-400">&nbsp; help@theskyisfake.org</span>.
+          </p>
         </div>
 
         <style>{`

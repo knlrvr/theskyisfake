@@ -16,7 +16,7 @@ export const contentType = 'image/png'
 export default async function Image() {
   // Font
   const playfair = fetch(
-    new URL('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Playfair+Display&display=swap', import.meta.url)
+    new URL('../../public/PlayfarDisplay-Regular.ttf', import.meta.url)
   ).then((res) => res.arrayBuffer())
  
   return new ImageResponse(

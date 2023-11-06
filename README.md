@@ -12,7 +12,7 @@
 ## Description & Purpose
 The Sky Is Fake is a project that's meant to showcase how beautiful the sky can be. My brother used to say "the sky is fake" whenever it seemed just a little *too* beautiful to be real. My brother passed a few years ago, but I've always loved the sentiment of 'the sky is fake'. I hope to extend that sentiment to anyone who visits the site. Anyone can sign in through a number of platforms (via Clerk) and upload their favorite pictures of the sky to be shown in the gallery. 
 
-You can see my personal favorites on my portfolio, [knlrvr.dev](https://www.knlrvr.dev/tsif). 
+You can see my personal favorites on my portfolio at [knlrvr.dev](https://www.knlrvr.dev/tsif). 
 
 <a name="view"></a>
 ## View

@@ -16,7 +16,7 @@ const About = () => {
           Established in September of 2023 in a bedroom in North Carolina, 
           we set out to prove the impossible. The sky is fake. Our dedicated
           team of researchers and field scientists showcase our cause 
-          in our gallery below.  
+          in the gallery below.  
         </p>
       </div>
     </div>

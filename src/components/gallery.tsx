@@ -110,18 +110,32 @@ const Gallery = () => {
       </span>
       <ul className=" columns-1 sm:columns-2 md:columns-3 lg:columns-4">
         
-        {posts.map((post) => (
-          <li key={post._id} className="break-inside-avoid-column mb-4">
-            <div className="flex justify-between items-center mb-1">
-              <span className="text-xs text-neutral-500 font-semibold tracking-wide">@{post.author}</span>
-              <span className="">{post.location}</span>
-              <span className="text-xs text-neutral-400 font-mono">&mdash; {new Date(post._creationTime).toLocaleTimeString()}</span>
-            </div>
-            {post.format === "image" && (
-              <Images post={post} />
-            )}
-          </li>
-        ))}
+          {posts?.map(post => {
+
+            const creationTimeMs = post._creationTime;
+            const date = new Date(creationTimeMs);
+
+            const options: Intl.DateTimeFormatOptions = {
+              year: 'numeric',
+              month: 'short',
+              day: 'numeric',
+            }
+
+            const formattedDate = date.toLocaleDateString('en-US', options);
+
+            return (
+              <li key={post._id} className="break-inside-avoid-column mb-4">
+                <div className="flex justify-between items-center mb-1">
+                  <span className="text-xs text-neutral-500 font-semibold tracking-wide">@{post.author}</span>
+                  {/* <span className="">{post.location}</span> */}
+                  <span className="text-xs text-neutral-400 font-mono">&mdash; {formattedDate}</span>
+                </div>
+                {post.format === "image" && (
+                  <Images post={post} />
+                )}
+              </li>
+            )
+          })}
       </ul>
     </div>
   )
@@ -129,7 +143,8 @@ const Gallery = () => {
 
 function Images({ post }: { post: { url: string } }) {
   return (
-    <Image src={post.url} alt="user uploaded image" height={1000} width={1000} className="object-cover w-fit h-full rounded-lg" />
+    // will change to author information for alt
+    <Image src={post.url} alt={`user uploaded image`} height={1000} width={1000} className="object-cover w-fit h-full rounded-lg" />
   );
 }
 

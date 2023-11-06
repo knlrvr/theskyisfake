@@ -101,8 +101,8 @@ const Header = () => {
             <span className="text-2xl font-bold tracking-wide">The Sky Is Fake</span>
           </Link>
 
-          <input type="checkbox" id="menu" checked={isNavOpen} />
-          <label id="burger" htmlFor="menu" onClick={() => setNavOpen((prev) => !prev)}>
+          <input type="checkbox" id="menu" checked={isNavOpen} onChange={() => setNavOpen((prev) => !prev)} />
+          <label id="burger" htmlFor="menu">
               <div></div>
               <div></div>
               <div></div>

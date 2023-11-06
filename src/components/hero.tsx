@@ -9,7 +9,7 @@ const Hero = () => {
       </span>
       <div className="w-[100%]">
         <Image
-          src="https://images.unsplash.com/photo-1494253109108-2e30c049369b"
+          src="https://images.unsplash.com/photo-1585173975596-e974e9ebe854"
           alt=""
           height="1000"
           width="1000"

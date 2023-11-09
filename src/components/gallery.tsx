@@ -8,6 +8,15 @@ import { useMutation, useQuery } from 'convex/react';
 
 import Image from 'next/image'
 
+import {
+  PiArrowFatDownThin,
+  PiArrowFatUpThin
+} from 'react-icons/pi'
+
+import {
+  AiOutlineHeart
+} from 'react-icons/ai'
+
 const Gallery = () => {
 
   const posts = useQuery(api.images.getPosts) ?? [];
@@ -38,7 +47,8 @@ const Gallery = () => {
     const { storageId } = json;
     await uploadImage({ 
       storageId, 
-      author: name 
+      author: name,
+      likes: 0,
     });
 
     setSelectedImage(null);
@@ -55,6 +65,7 @@ const Gallery = () => {
   //   'Oceania',
   //   'Antarctica',
   // ]
+
 
   return (
     <div id="gallery" className="flex flex-col mb-12">
@@ -108,7 +119,7 @@ const Gallery = () => {
       <span className="mt-20 mb-8 font-semibold tracking-wider text-xl">
         &mdash; Gallery
       </span>
-      <ul className=" columns-1 sm:columns-2 md:columns-3 lg:columns-4">
+      <ul className=" columns-1 sm:columns-2 lg:columns-3 gap-8">
         
           {posts?.map(post => {
 
@@ -124,15 +135,36 @@ const Gallery = () => {
             const formattedDate = date.toLocaleDateString('en-US', options);
 
             return (
-              <li key={post._id} className="break-inside-avoid-column mb-4">
-                <div className="flex justify-between items-center mb-1">
-                  <span className="text-xs text-neutral-500 font-semibold tracking-wide">@{post.author}</span>
-                  {/* <span className="">{post.location}</span> */}
-                  <span className="text-xs text-neutral-400 font-mono">&mdash; {formattedDate}</span>
-                </div>
-                {post.format === "image" && (
-                  <Images post={post} />
-                )}
+              <li key={post._id} className="break-inside-avoid-column mb-10">
+                  <div className="flex justify-between items-center mb-2.5">
+                    <div className="flex items-center text-xs text-neutral-500 tracking-wide font-light">
+                      <p>
+                        Posted by 
+                      </p>
+                      <span className="font-bold">
+                        &nbsp;{post.author}
+                      </span>
+                      <span className="text-xs text-neutral-400 font-light">&nbsp;&bull; {formattedDate}</span>
+                    </div>
+                    {/* <span className="">{post.location}</span> */}
+                  </div>
+                  {post.format === "image" && (
+                    <Images post={post} />
+                  )}
+
+                  {/* uncomment when likes are added */}
+                  {/* {user ? (
+                    <div className="mt-2 text-xl flex items-center space-x-2">
+                      <button 
+                      // like 
+                      >
+                        <AiOutlineHeart className="" />
+                      </button>
+                      <span className="text-sm font-light">{post.likes}</span>
+                    </div>
+                  ) : (
+                    <></>
+                  )} */}
               </li>
             )
           })}
@@ -141,10 +173,14 @@ const Gallery = () => {
   )
 }
 
-function Images({ post }: { post: { url: string } }) {
+function Images({ post }: { post: { url?: string | null | undefined } }) {
+  
+  if (!post.url) {
+    return null;
+  }
+
   return (
-    // will change to author information for alt
-    <Image src={post.url} alt={`user uploaded image`} height={1000} width={1000} className="object-cover w-fit h-full rounded-lg" />
+    <Image src={post.url} alt={`user uploaded image`} height={1000} width={1000} className="object-cover w-fit h-full rounded-md" />
   );
 }
 

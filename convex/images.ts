@@ -30,23 +30,33 @@ export const createPost = mutation({
   args: { 
     storageId: v.string(), 
     author: v.string(), 
-    location: v.optional(v.string()), 
+    likes: v.number(),
   },
   handler: async (ctx, args) => {
     await ctx.db.insert("posts", {
       body: args.storageId,
       author: args.author,
-      location: args.location, 
       format: "image",
+      likes: 0,
     });
   },
 });
+
+// 
+
+// export const addLikes = mutation({
+
+// })
 
 // export const getAllPostsByUser = query({
 
 // })
 
 // export const getAllPostsByLocation = query({
+
+// })
+
+// export const deletePost = mutation({
 
 // })
 

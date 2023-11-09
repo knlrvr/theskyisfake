@@ -95,7 +95,7 @@ const Header = () => {
         </div>
       </div>
 
-      <div className="lg:hidden nav fixed top-0 inset-x-0 z-[999] bg-white">
+      <div className="lg:hidden nav fixed top-0 inset-x-0 z-[991] bg-white">
         <div className="flex items-center justify-between p-2 px-4">
           <Link href="/" className="mb-1 pt-0.5">
             <span className="text-2xl font-extrabold tracking-widest">The Sky Is Fake</span>
@@ -187,7 +187,7 @@ const Header = () => {
             display: flex;
             flex-direction: column;
             scroll: none;
-            z-index: 998;
+            z-index: 990;
             padding-top: 4rem;
           }
         `}</style>

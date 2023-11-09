@@ -8,6 +8,10 @@ import { useMutation, useQuery } from 'convex/react';
 
 import Image from 'next/image'
 
+// modal 
+Modal.setAppElement('main');
+import Modal from 'react-modal'
+
 import {
   PiArrowFatDownThin,
   PiArrowFatUpThin
@@ -18,6 +22,8 @@ import {
 } from 'react-icons/ai'
 
 const Gallery = () => {
+
+  const [isUploadModalOpen, setUploadModalOpen] = useState(false);
 
   const posts = useQuery(api.images.getPosts) ?? [];
 
@@ -53,6 +59,8 @@ const Gallery = () => {
 
     setSelectedImage(null);
     imageInput.current!.value = '';
+
+    closeUploadModal();
   }
 
   // const locationOptions = [
@@ -66,60 +74,43 @@ const Gallery = () => {
   //   'Antarctica',
   // ]
 
+  const openloadModalOpen = () => {
+    setUploadModalOpen(true);
+  }
+
+  const closeUploadModal = () => {
+    setUploadModalOpen(false);
+  }
+
 
   return (
+    <>
     <div id="gallery" className="flex flex-col mb-12">
 
-      <div className="">
+      <div className="flex flex-col ">
         <span className="text-2xl md:text-4xl font-semibold tracking-widest">
-          Ready to join one of our worldwide field teams? Upload your photos to be featured in our gallery! 
+          Submit your photos to be featured in our gallery! 
         </span>
-
-      {user ? (
-        <form onSubmit={handleSendImage} className="flex flex-col space-y-4 mt-8">
-          <input
-            type="file"
-            accept="image/*"
-            ref={imageInput}
-            onChange={(event) => setSelectedImage(event.target.files![0])}
-            className="w-56"
-            disabled={selectedImage !== null}
-          />
-          {/* <select
-            id="continent"
-            placeholder='Select Continent'
-            value={imageContinent}
-            onChange={(e) => setImageContinent(e.currentTarget.value)}
-            className="text-[#222] w-fit p-1 pr-[4.2rem] rounded-full"
-          >
-            {locationOptions.map((option, index) => (
-              <option key={index} value={option}>
-                {option}
-              </option>
-            ))}
-          </select> */}
-          <input
-            type="submit"
-            value="Upload"
-            disabled={selectedImage === null}
-            className="w-fit rounded-full bg-yellow-400 p-1 px-6 cursor-pointer hover:bg-yellow-300 duration-300 text-white"
-          />
-        </form>
-        ) : (
-        <div className="mt-8">
-          <p className="text-neutral-400">
-            To upload photos, you must sign in. 
-            <span className="text-yellow-400"> <SignInButton mode='modal' afterSignInUrl='/' /> </span> now!
-          </p>
-        </div>
-      )}
+        {user ? (
+          <button className="w-fit mt-8 bg-yellow-400 px-6 py-2 rounded-full"
+            onClick={() => void setUploadModalOpen(true)}>
+            Submit Now!
+          </button>
+          ) : (
+          <div className="mt-8">
+            <p className="text-neutral-400">
+              To upload photos, you must sign in. 
+              <span className="text-yellow-400"> <SignInButton mode='modal' afterSignInUrl='/' /> </span> now!
+            </p>
+          </div>
+        )}
       </div>
 
 
-      <span className="mt-20 mb-8 font-semibold tracking-wider text-xl">
+      {/* <span className="mt-20 mb-8 font-semibold tracking-wider text-xl">
         &mdash; Gallery
-      </span>
-      <ul className=" columns-1 sm:columns-2 lg:columns-3 gap-8">
+      </span> */}
+      <ul className=" columns-1 sm:columns-2 lg:columns-3 gap-8 mt-20">
         
           {posts?.map(post => {
 
@@ -170,6 +161,52 @@ const Gallery = () => {
           })}
       </ul>
     </div>
+
+
+    <Modal
+        isOpen={isUploadModalOpen}
+        onRequestClose={closeUploadModal}
+        contentLabel="Confirm Change"
+        overlayClassName="modal-overlay fixed inset-0 bg-[#222] bg-opacity-80 flex items-center justify-center px-8 backdrop-blur-sm z-[999]"
+        className="bg-white p-4 py-12 rounded-lg"
+      >
+        <div className="text-center flex flex-col justify-between space-y-8 px-4">
+          <p className="text-sm">Upload your picture below!</p>
+          <div className="">
+            <form onSubmit={handleSendImage} 
+              className="flex flex-col space-y-4 mt-2">
+              <input
+                type="file"
+                accept="image/*"
+                ref={imageInput}
+                onChange={(event) => setSelectedImage(event.target.files![0])}
+                className="w-56"
+                disabled={selectedImage !== null}
+              />
+              {/* <select
+                id="continent"
+                placeholder='Select Continent'
+                value={imageContinent}
+                onChange={(e) => setImageContinent(e.currentTarget.value)}
+                className="text-[#222] w-fit p-1 pr-[4.2rem] rounded-full"
+              >
+                {locationOptions.map((option, index) => (
+                  <option key={index} value={option}>
+                    {option}
+                  </option>
+                ))}
+              </select> */}
+              <input
+                type="submit"
+                value="Upload"
+                disabled={selectedImage === null}
+                className="w-fit rounded-full bg-yellow-400 p-1 px-6 cursor-pointer hover:bg-yellow-300 duration-300 text-white"
+              />
+            </form>
+          </div>
+        </div>
+      </Modal>
+    </>
   )
 }
 

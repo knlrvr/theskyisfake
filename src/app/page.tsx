@@ -12,7 +12,7 @@ export default function Home() {
       <Hero />
 
       {/* about */}
-      <About />
+      {/* <About /> */}
 
       {/* staff picks; uncomment after restyle */}
       {/* <Staff /> */}

@@ -1,6 +1,6 @@
 <h2 align="center"> The Sky Is Fake </h2>  
 
-![Screenshot 2023-11-06 at 11 31 28 AM](https://github.com/knlrvr/theskyisfake/assets/91632194/318529bd-bb1e-491f-9f94-23035e6cd5c3)
+![Screenshot 2023-11-06 at 3 03 28 PM](https://github.com/knlrvr/theskyisfake/assets/91632194/9b371ecb-7535-4bdc-9863-0d88a8fe43b0)
 
 ## Table of Contents
 - [Description & Purpose](#description)

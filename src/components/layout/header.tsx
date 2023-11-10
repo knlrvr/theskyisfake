@@ -12,6 +12,7 @@ import {
 import {
   SignInButton,
   SignOutButton,
+  UserButton,
   useUser
 } from '@clerk/clerk-react'
 
@@ -33,15 +34,8 @@ const mobileItems = [
 const Header = () => {
 
   const [isNavOpen, setNavOpen] = useState<boolean>(false);
-  const [isExpandedDt, setIsExpandedDt] = useState<boolean>(false);
-  const [isExpandedMb, setIsExpandedMb] = useState<boolean>(false);
 
   const { user } = useUser();
-
-  const itemSelected = () => {
-    setNavOpen(false);
-
-  }
 
   return (
     <nav className="font-mont">
@@ -62,29 +56,7 @@ const Header = () => {
               ))}
 
               {user ? (
-                <li className="flex items-center space-x-1 border border-[#333] rounded-full p-1 px-2 relative">
-                  <Image 
-                    src={user.imageUrl ?? ''}
-                    alt={`${user}'s profile picture`}
-                    width="1000"
-                    height="1000"
-                    className="w-6 h-6 rounded-full bg-gradient from-blue-200 to-red-200"
-                  />
-                  <button 
-                    onClick={() => void setIsExpandedDt((prev) => !prev)}>
-                    <BsThreeDotsVertical />
-                  </button>
-
-                  {isExpandedDt && (
-                    <div className="absolute top-10 right-0 border rounded-md bg-neutral-200">
-                      <ul className="w-24">
-                        <li className="w-24 flex justify-end text-right p-2 px-4">
-                          <SignOutButton />
-                        </li>
-                      </ul>
-                    </div>
-                  )}
-                </li>
+                <UserButton />
               ) : (
                 <li className="font-semibold border border-[#333] p-1 px-2 rounded-full">
                   <SignInButton mode='modal' afterSignInUrl='/' />
@@ -133,19 +105,8 @@ const Header = () => {
           </Link>
 
           <div className="flex items-center space-x-2 relative">
-            {user && (
-            <Image 
-              src={user?.imageUrl ?? ''}
-              alt={`${user}'s profile picture`}
-              width="1000"
-              height="1000"
-              className="w-6 h-6 rounded-full bg-gradient from-blue-200 to-red-200"
-            />
-            )}
             {user ? ( 
-            <button onClick={() => void setIsExpandedMb((prev) => !prev)}>
-              <BsThreeDotsVertical className="text-xl" />
-            </button>
+              <UserButton />
             ) : (
               <div className="flex items-center space-x-4">
                 <SignInButton mode='modal' afterSignInUrl='/' />
@@ -153,16 +114,7 @@ const Header = () => {
               </div>
             )}
 
-            {isExpandedMb && (
-              <div className="absolute top-10 right-2 border rounded-md bg-neutral-200">
-                <ul className="w-24">
-                  <li className="w-24 flex justify-end p-2 px-4"
-                    onClick={() => void setIsExpandedMb(false)}>
-                    <SignOutButton />
-                  </li>
-                </ul>
-              </div>
-            )}
+            
           </div>
         </div>
 

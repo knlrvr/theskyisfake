@@ -56,7 +56,7 @@ const Header = () => {
               ))}
 
               {user ? (
-                <UserButton />
+                <UserButton afterSignOutUrl='/' />
               ) : (
                 <li className="font-semibold border border-[#333] p-1 px-2 rounded-full">
                   <SignInButton mode='modal' afterSignInUrl='/' />
@@ -106,7 +106,7 @@ const Header = () => {
 
           <div className="flex items-center space-x-2 relative">
             {user ? ( 
-              <UserButton />
+              <UserButton afterSignOutUrl='/' />
             ) : (
               <div className="flex items-center space-x-4">
                 <SignInButton mode='modal' afterSignInUrl='/' />

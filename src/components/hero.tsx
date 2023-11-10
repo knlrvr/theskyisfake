@@ -7,7 +7,7 @@ import {
 
 const Hero = () => {
   return (
-    <div className="flex flex-col gap-4 md:gap-8 pb-20 pt-24">
+    <div className="flex flex-col gap-4 md:gap-8 pb-12 md:pb-20 pt-24">
       <div className="flex justify-between items-center">
         <h1 className="tracking-wider font-migra text-5xl md:text-7xl">The Sky Is Fake</h1>
         <PiStarFourFill />

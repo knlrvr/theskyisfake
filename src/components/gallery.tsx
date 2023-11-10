@@ -91,7 +91,7 @@ const Gallery = () => {
     <div id="gallery" className="flex flex-col mb-12">
 
       <div className="flex flex-col ">
-        <span className="text-2xl md:text-4xl font-semibold tracking-widest">
+        <span className="text-2xl md:text-4xl font-light tracking-widest">
           Submit your photos to be featured in our gallery! 
         </span>
         {user ? (

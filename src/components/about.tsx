@@ -14,9 +14,8 @@ const About = () => {
         </p>
         <p className="mt-8 font-light md:w-[75%] lg:w-[50%]">
           Established in September of 2023 in a bedroom in North Carolina, 
-          we set out to prove the impossible. The sky is fake. Our dedicated
-          team of researchers and field scientists showcase our cause 
-          in the gallery below.  
+          we set out to prove the impossible. 
+          <em className="tracking-widest font-migra"> The sky is fake</em>.
         </p>
       </div>
     </div>

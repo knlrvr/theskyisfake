@@ -23,7 +23,7 @@ const Hero = () => {
       </div>
       <p className="font-migra tracking-wide leading-normal text-4xl md:text-6xl">
         This is more than an <em className='tracking-widest'>idea</em>. 
-        It's a <em className='tracking-widest'>revolution</em>.
+        It&apos;s a <em className='tracking-widest'>revolution</em>.
       </p>
     </div>
   )

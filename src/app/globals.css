@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+    font-family: 'PLAYFAIR';
+    src: url('../../public/PlayfairDisplay-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'MIGRA';
+    src: url('../../public/Migra-Extralight.ttf');
+}
+
 * {
     scroll-behavior: smooth !important;
 }
@@ -64,5 +74,9 @@
 
 #menu:checked ~ #burger > div:nth-child(3) {
     transform: translateY(-10px) rotate(-45deg);
+}
+  
+.intro-text {
+    font-size: clamp(3rem, 3rem + 8vw, 8vw);
 }
   

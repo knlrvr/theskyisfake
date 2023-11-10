@@ -43,7 +43,7 @@ const Header = () => {
 
         <div className="hidden lg:flex justify-between items-center p-4 max-w-6xl mx-auto bg-white">
           <Link href="/">
-            <span className="text-2xl font-extrabold tracking-widest">The Sky Is Fake</span>
+            <span className="text-2xl font-migra tracking-widest">The Sky Is Fake</span>
           </Link>
           <div className="">
             <ul className="flex items-center space-x-8 text-sm font-light">
@@ -69,8 +69,8 @@ const Header = () => {
 
       <div className="lg:hidden nav fixed top-0 inset-x-0 z-[991] bg-white">
         <div className="flex items-center justify-between p-2 px-4">
-          <Link href="/" className="mb-1 pt-0.5">
-            <span className="text-2xl font-extrabold tracking-widest">The Sky Is Fake</span>
+          <Link href="/" className="pt-1">
+            <span className="text-2xl font-migra tracking-widest">TSIF</span>
           </Link>
 
           <input type="checkbox" id="menu" checked={isNavOpen} onChange={() => setNavOpen((prev) => !prev)} />

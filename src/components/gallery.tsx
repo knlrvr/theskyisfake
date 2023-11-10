@@ -18,7 +18,8 @@ import {
 } from 'react-icons/pi'
 
 import {
-  AiOutlineHeart
+  AiOutlineHeart,
+  AiFillHeart,
 } from 'react-icons/ai'
 
 const Gallery = () => {
@@ -26,6 +27,8 @@ const Gallery = () => {
   const [isUploadModalOpen, setUploadModalOpen] = useState(false);
 
   const posts = useQuery(api.images.getPosts) ?? [];
+  // const likePost = useMutation(api.images.addLike);
+  const likeByUser = useMutation(api.images.addLikeByUser);
 
   const { user } = useUser();
   const name = user?.fullName as string;
@@ -74,13 +77,13 @@ const Gallery = () => {
   //   'Antarctica',
   // ]
 
-  const openloadModalOpen = () => {
+  const openUploadModal = () => {
     setUploadModalOpen(true);
-  }
+  };
 
   const closeUploadModal = () => {
     setUploadModalOpen(false);
-  }
+  };
 
 
   return (
@@ -92,7 +95,7 @@ const Gallery = () => {
           Submit your photos to be featured in our gallery! 
         </span>
         {user ? (
-          <button className="w-fit mt-8 bg-yellow-400 px-6 py-2 rounded-full"
+          <button className="w-fit mt-8 bg-yellow-400 text-white px-6 py-2 rounded-full"
             onClick={() => void setUploadModalOpen(true)}>
             Submit Now!
           </button>
@@ -144,18 +147,27 @@ const Gallery = () => {
                   )}
 
                   {/* uncomment when likes are added */}
-                  {/* {user ? (
+                  {user ? (
                     <div className="mt-2 text-xl flex items-center space-x-2">
                       <button 
-                      // like 
+                      onClick={() => {
+                        // likePost({ post: post._id, likes: 1 })
+
+                        const userId = user.id;
+                        likeByUser({ post: post._id, userId })
+                      }} 
                       >
-                        <AiOutlineHeart className="" />
+                        {(Array.isArray(post.likes) && post.likes.includes(user.id)) ? (
+                          <AiFillHeart className="text-red-600" />
+                        ) : (
+                          <AiOutlineHeart className="" />
+                        )}
                       </button>
-                      <span className="text-sm font-light">{post.likes}</span>
+                      <span className="text-sm font-light">{post.likes.length}</span>
                     </div>
                   ) : (
                     <></>
-                  )} */}
+                  )}
               </li>
             )
           })}

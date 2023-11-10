@@ -44,9 +44,39 @@ export const createPost = mutation({
 
 // 
 
-// export const addLikes = mutation({
+// Keeping below code for reference lol 
 
+
+// export const addLike = mutation({
+//   args: { post: v.id('posts'), likes: v.number() },
+//   handler: async (ctx, { post }) => {
+//     const existing = await ctx.db.get(post);
+//     const updatedLikes = (existing.likes || 0) + 1;
+
+//     await ctx.db.patch(post, { likes: updatedLikes } );
+//   }
 // })
+
+// Only allowing one like per user
+
+export const addLikeByUser = mutation({
+  args: { post: v.id('posts'), userId: v.string() },
+  handler: async (ctx, { post, userId }) => {
+    const existing = await ctx.db.get(post);
+
+    // Check if the user has already liked the post
+    if (Array.isArray(existing.likes) && existing.likes.includes(userId)) {
+      // User has already liked the post, remove the like
+      const updatedLikes = existing.likes.filter((id: string) => id !== userId);
+      await ctx.db.patch(post, { likes: updatedLikes });
+      return;
+    }
+
+    // Ensure existing.likes is an array, and add the user to the list of likes
+    const updatedLikes = [...(Array.isArray(existing.likes) ? existing.likes : []), userId];
+    await ctx.db.patch(post, { likes: updatedLikes });
+  }
+});
 
 // export const getAllPostsByUser = query({
 

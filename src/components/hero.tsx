@@ -7,24 +7,24 @@ import {
 
 const Hero = () => {
   return (
-    <div className="flex flex-col gap-4 md:gap-8 pb-12 md:pb-20 pt-24">
-      <div className="flex justify-between items-center">
-        <h1 className="tracking-wider font-migra text-5xl md:text-7xl">The Sky Is Fake</h1>
-        <PiStarFourFill />
-      </div>
-      <div className="w-[100%]">
+    <div className="flex flex-col text-center pb-12 md:pb-20 pt-36">
+
+      <span className="font-migra text-5xl md:text-7xl tracking-wider text-center">
+        The Sky Is Fake
+      </span>
+      {/* <div className="w-[100%] mt-2 mb-4">
         <Image
           src="https://images.unsplash.com/photo-1601352209555-489a72668fda"
           alt=""
           height="1000"
           width="1000"
-          className="h-48 md:h-64 object-center object-cover w-full"
+          className="h-36 md:h-48 object-center object-cover w-full"
         />
-      </div>
-      <p className="font-migra tracking-wide leading-normal text-4xl md:text-6xl">
-        This is more than an <em className='tracking-widest'>idea</em>. 
-        It&apos;s a <em className='tracking-widest'>revolution</em>.
-      </p>
+      </div> */}
+      <p className="font-migra tracking-widest leading-normal text-2xl md:text-4xl text-center">
+        This is more than an <em>idea</em>. 
+        It&apos;s a <em>revolution</em>.
+      </p> 
     </div>
   )
 }

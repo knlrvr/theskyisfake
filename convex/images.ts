@@ -29,12 +29,14 @@ export const generateUploadUrl = mutation(async (ctx) => {
 export const createPost = mutation({
   args: { 
     storageId: v.string(), 
+    userName: v.string(),
     author: v.string(), 
     likes: v.number(),
   },
   handler: async (ctx, args) => {
     await ctx.db.insert("posts", {
       body: args.storageId,
+      userName: args.userName,
       author: args.author,
       format: "image",
       likes: 0,
@@ -86,7 +88,11 @@ export const addLikeByUser = mutation({
 
 // })
 
-// export const deletePost = mutation({
-
-// })
+export const deletePostById = mutation({
+  args: { post: v.id('posts') },
+  handler: async (ctx, { post }) => {
+    // const storageId = await ctx.db.get(post);
+    return await ctx.db.delete(post)
+  }
+})
 

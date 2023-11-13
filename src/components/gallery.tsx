@@ -102,12 +102,12 @@ const Gallery = () => {
     <>
     <div id="gallery" className="flex flex-col mb-12">
 
-      <div className="flex flex-col ">
+      <div className="flex flex-col bg-[#111] text-white p-8">
         <span className="text-2xl md:text-4xl font-light tracking-widest">
-          Submit your photos to be featured in our gallery! 
+          Interested in contributing? Submit your photos to be featured in our gallery below! 
         </span>
         {user ? (
-          <button className="w-fit mt-8 bg-yellow-400 text-white px-6 py-2 rounded-full"
+          <button className="w-fit mt-8 bg-yellow-200 text-[#111] px-6 py-2 rounded-full"
             onClick={() => void setUploadModalOpen(true)}>
             Submit Now!
           </button>
@@ -115,7 +115,7 @@ const Gallery = () => {
           <div className="mt-8">
             <p className="text-neutral-400">
               To upload photos, you must sign in. 
-              <span className="text-yellow-400"> <SignInButton mode='modal' afterSignInUrl='/' /> </span> now!
+              <span className="text-yellow-200"> <SignInButton mode='modal' afterSignInUrl='/' /> </span> now!
             </p>
           </div>
         )}
@@ -161,8 +161,6 @@ const Gallery = () => {
                     <div className="mt-2 text-xl flex items-center space-x-2">
                       <button 
                       onClick={() => {
-                        // likePost({ post: post._id, likes: 1 })
-
                         const userId = user.id;
                         likeByUser({ post: post._id, userId })
                       }} 
@@ -239,7 +237,7 @@ const Gallery = () => {
                   type="submit"
                   value="Submit"
                   disabled={selectedImage === null}
-                  className="w-fit rounded-full bg-yellow-400 p-1 px-6 cursor-pointer hover:bg-yellow-300 duration-300 text-white"
+                  className="w-fit rounded-full bg-yellow-400 p-1 px-6 cursor-pointer hover:bg-yellow-200 duration-300 text-[#111]"
                 />
               </div>
             )}
@@ -254,7 +252,7 @@ const Gallery = () => {
         onRequestClose={closeImageModal}
         contentLabel="Upload Image"
         overlayClassName="modal-overlay fixed inset-0 bg-[#222] bg-opacity-90 flex items-center justify-center backdrop-blur-sm z-[999] p-4 md:p-20"
-        className="rounded-lg w-full h-fit bg-white flex flex-col items-center max-w-3xl"
+        className="rounded-lg w-full h-fit bg-white bg-opacity-80 flex flex-col items-center max-w-2xl"
       >
         {expandedImageUrl && (
           <div className="flex flex-col items-end p-2 md:p-4">
@@ -272,7 +270,7 @@ const Gallery = () => {
                 alt=""
                 width="1000"
                 height="1000"
-                className="rounded-md w-full max-h-[50%]"
+                className="rounded-md w-full h-fit"
               />
             </div>
           </div>

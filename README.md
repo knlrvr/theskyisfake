@@ -1,6 +1,6 @@
 <h2 align="center"> The Sky Is Fake </h2>  
 
-![Screenshot 2023-11-06 at 3 03 28 PM](https://github.com/knlrvr/theskyisfake/assets/91632194/9b371ecb-7535-4bdc-9863-0d88a8fe43b0)
+![Screenshot 2023-11-10 at 9 32 24 AM](https://github.com/knlrvr/theskyisfake/assets/91632194/ef138ee8-4690-4f5c-b177-b9077306eaf7)
 
 ## Table of Contents
 - [Description & Purpose](#description)
@@ -10,7 +10,7 @@
 
 <a name="description"></a>
 ## Description & Purpose
-The Sky Is Fake is a project that's meant to showcase how beautiful the sky can be. My brother used to say "the sky is fake" whenever it seemed just a little *too* beautiful to be real. My brother passed a few years ago, but I've always loved the sentiment of 'the sky is fake'. I hope to extend that sentiment to anyone who visits the site. Anyone can sign in through a number of platforms (via Clerk) and upload their favorite pictures of the sky to be shown in the gallery. 
+The Sky Is Fake is a project that's meant to showcase how beautiful the sky can be. My brother used to say "the sky is fake" whenever it seemed just a little *too* beautiful to be real. My brother passed a few years ago, but I've always loved the sentiment of 'the sky is fake'. I hope to extend that sentiment to anyone who visits the site. Anyone can sign in through a number of platforms (via Clerk) and upload their favorite pictures of the sky to be shown in the gallery. They can also 'like' their favorite pictures in the gallery. 
 
 You can see my personal favorites on my portfolio at [knlrvr.dev](https://www.knlrvr.dev/tsif). 
 

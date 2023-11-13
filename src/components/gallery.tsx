@@ -237,7 +237,7 @@ const Gallery = () => {
 
                 <input
                   type="submit"
-                  value="Upload"
+                  value="Submit"
                   disabled={selectedImage === null}
                   className="w-fit rounded-full bg-yellow-400 p-1 px-6 cursor-pointer hover:bg-yellow-300 duration-300 text-white"
                 />

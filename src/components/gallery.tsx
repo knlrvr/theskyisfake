@@ -289,7 +289,7 @@ function Images({ post }: { post: { url?: string | null | undefined } }) {
   }
 
   return (
-    <Image src={post.url} alt={post.url} height={1000} width={1000} className="object-cover w-fit h-full rounded-md" />
+    <Image src={post.url} alt={post.url} height={1000} width={1000} className="object-cover w-fit h-full rounded-md cursor-pointer" />
   );
 }
 

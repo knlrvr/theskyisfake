@@ -28,7 +28,6 @@ const Gallery = () => {
   const [expandedImageUrl, setExpandedImageUrl] = useState<string>('');
 
   const posts = useQuery(api.images.getPosts) ?? [];
-  // const likePost = useMutation(api.images.addLike);
   const likeByUser = useMutation(api.images.addLikeByUser);
 
   const { user } = useUser();
@@ -62,7 +61,6 @@ const Gallery = () => {
 
     setSelectedImage(null);
     imageInput.current!.value = '';
-
     closeUploadModal();
   }
 
@@ -193,9 +191,9 @@ const Gallery = () => {
         className="bg-white p-4 py-10 rounded-lg w-full md:w-[75%] lg:w-[50%]"
       >
         <div className="text-center flex flex-col justify-between space-y-8 px-4">
-          <form onSubmit={() => handleSendImage}
+          <form onSubmit={handleSendImage}
             className="flex flex-col items-end space-y-2 w-full">
-            <label htmlFor="dropzone-file" className="mb-4 flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 hover:bg-gray-100">
+            <label htmlFor="dropzone-file" className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 hover:bg-gray-100">
               <div className="flex flex-col items-center justify-center pt-5 pb-6">
                 <svg className="w-8 h-8 mb-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
                   <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
@@ -215,33 +213,36 @@ const Gallery = () => {
             </label>
 
             {selectedImage !== null && ( 
-              <div className="flex items-center justify-between w-full">
-                <div className="flex items-center space-x-2">
-                  <Image  
-                    src={URL.createObjectURL(selectedImage)}
-                    alt={selectedImage.name}
-                    width="1000"
-                    height="1000"
-                    className="w-10 h-10 rounded-md border"
-                  />
-                  <p className="font-light"> 
-                    &mdash; {selectedImage.name} <span className="font-light text-xs text-neutral-500">({formatFileSize(selectedImage.size)})</span>
-                  </p>
+              <div className="flex flex-col items-end space-y-4 w-full pt-4">
+                <div className="flex items-center w-full">
+                  <div className="flex items-center w-full space-x-2">
+                    <Image  
+                      src={URL.createObjectURL(selectedImage)}
+                      alt={selectedImage.name}
+                      width="1000"
+                      height="1000"
+                      className="w-10 h-10 rounded-md border"
+                    />
+                    <p className="font-light"> 
+                      &mdash; {selectedImage.name} <span className="font-light text-xs text-neutral-500">({formatFileSize(selectedImage.size)})</span>
+                    </p>
+                  </div>
+
+                  <button onClick={() => {
+                    handleRemoveImage();
+                  }}>
+                    <AiOutlineClose />
+                  </button>
                 </div>
-                <button onClick={() => {
-                  handleRemoveImage();
-                }}>
-                  <AiOutlineClose />
-                </button>
+
+                <input
+                  type="submit"
+                  value="Upload"
+                  disabled={selectedImage === null}
+                  className="w-fit rounded-full bg-yellow-400 p-1 px-6 cursor-pointer hover:bg-yellow-300 duration-300 text-white"
+                />
               </div>
             )}
-
-            <input
-              type="submit"
-              value="Submit"
-              disabled={selectedImage === null}
-              className="w-fit rounded-full bg-yellow-400 p-1 px-6 cursor-pointer hover:bg-yellow-300 duration-300 text-white"
-            />
           </form> 
         </div>
       </Modal>
@@ -273,11 +274,6 @@ const Gallery = () => {
                 height="1000"
                 className="rounded-md w-full max-h-[50%]"
               />
-              {selectedImage && (
-                <span>
-                  {}
-                </span>
-              )}
             </div>
           </div>
         )}

@@ -24,6 +24,8 @@ import {
 const Gallery = () => {
 
   const [isUploadModalOpen, setUploadModalOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState<File | null>(null);
+  const [expandedImageUrl, setExpandedImageUrl] = useState<string>('');
 
   const posts = useQuery(api.images.getPosts) ?? [];
   // const likePost = useMutation(api.images.addLike);
@@ -36,7 +38,6 @@ const Gallery = () => {
   const uploadImage = useMutation(api.images.createPost);
 
   const imageInput = useRef<HTMLInputElement>(null);
-  const [selectedImage, setSelectedImage] = useState<File | null>(null);
   // const [imageContinent, setImageContinent] = useState<string>('');
 
   async function handleSendImage(event: FormEvent) {
@@ -91,7 +92,14 @@ const Gallery = () => {
       imageInput.current.value = '';
     }
   }
- 
+
+  const openImageModal = (imageUrl: string) => {
+    setExpandedImageUrl(imageUrl);
+  }
+  const closeImageModal = () => {
+    setExpandedImageUrl('');
+  }
+
   return (
     <>
     <div id="gallery" className="flex flex-col mb-12">
@@ -145,11 +153,13 @@ const Gallery = () => {
                     {/* <span className="">{post.location}</span> */}
                   </div>
                   {post.format === "image" && (
-                    <Images post={post} />
+                    <div onClick={() => openImageModal(post.url!)}>
+                      <Images post={post} />
+                    </div>
                   )}
 
                   {/* uncomment when likes are added */}
-                  {user ? (
+                  {user && (
                     <div className="mt-2 text-xl flex items-center space-x-2">
                       <button 
                       onClick={() => {
@@ -167,8 +177,6 @@ const Gallery = () => {
                       </button>
                       <span className="text-sm font-light">{post.likes.length}</span>
                     </div>
-                  ) : (
-                    <></>
                   )}
               </li>
             )
@@ -176,11 +184,11 @@ const Gallery = () => {
       </ul>
     </div>
 
-
+    {/*  Upload Modal */}
     <Modal
         isOpen={isUploadModalOpen}
         onRequestClose={closeUploadModal}
-        contentLabel="Confirm Change"
+        contentLabel="Upload Image"
         overlayClassName="modal-overlay fixed inset-0 bg-[#222] bg-opacity-80 flex items-center justify-center px-8 backdrop-blur-sm z-[999]"
         className="bg-white p-4 py-10 rounded-lg w-full md:w-[75%] lg:w-[50%]"
       >
@@ -237,12 +245,49 @@ const Gallery = () => {
           </form> 
         </div>
       </Modal>
+
+      
+      {/* Expanded Modal */}
+      <Modal
+        isOpen={expandedImageUrl !== ''}
+        onRequestClose={closeImageModal}
+        contentLabel="Upload Image"
+        overlayClassName="modal-overlay fixed inset-0 bg-[#222] bg-opacity-90 flex items-center justify-center backdrop-blur-sm z-[999] p-4 md:p-20"
+        className="rounded-lg w-full h-fit bg-white flex flex-col items-center max-w-3xl"
+      >
+        {expandedImageUrl && (
+          <div className="flex flex-col items-end p-2 md:p-4">
+
+            <button className="text-3xl mb-2 md:mb-4"
+              onClick={() => {
+              closeImageModal();
+            }}>
+              <AiOutlineClose className="" />
+            </button>
+
+            <div className="flex flex-col space-y-2 justify-center">
+              <Image 
+                src={expandedImageUrl}
+                alt=""
+                width="1000"
+                height="1000"
+                className="rounded-md w-full max-h-[50%]"
+              />
+              {selectedImage && (
+                <span>
+                  {}
+                </span>
+              )}
+            </div>
+          </div>
+        )}
+      </Modal>
     </>
   )
 }
 
 function Images({ post }: { post: { url?: string | null | undefined } }) {
-  
+
   if (!post.url) {
     return null;
   }

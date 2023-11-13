@@ -13,7 +13,7 @@ const nextConfig = {
             {
                 protocol: 'https',
                 hostname: 'shiny-ostrich-889.convex.cloud'
-            }
+            },
         ],
     },
 }

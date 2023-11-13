@@ -13,9 +13,8 @@ Modal.setAppElement('main');
 import Modal from 'react-modal'
 
 import {
-  PiArrowFatDownThin,
-  PiArrowFatUpThin
-} from 'react-icons/pi'
+  AiOutlineClose
+} from 'react-icons/ai'
 
 import {
   AiOutlineHeart,
@@ -66,17 +65,6 @@ const Gallery = () => {
     closeUploadModal();
   }
 
-  // const locationOptions = [
-  //   'Select Continent',
-  //   'Asia',
-  //   'Africa',
-  //   'Europe',
-  //   'North America',
-  //   'South America',
-  //   'Oceania',
-  //   'Antarctica',
-  // ]
-
   const openUploadModal = () => {
     setUploadModalOpen(true);
   };
@@ -85,7 +73,25 @@ const Gallery = () => {
     setUploadModalOpen(false);
   };
 
+  function formatFileSize(bytes: number) {
+    if (bytes < 1024) {
+        return bytes + ' bytes';
+    } else if (bytes < 1024 * 1024) {
+        return (bytes / 1024).toFixed(2) + ' KB';
+    } else if (bytes < 1024 * 1024 * 1024) {
+        return (bytes / (1024 * 1024)).toFixed(2) + ' MB';
+    } else {
+        return (bytes / (1024 * 1024 * 1024)).toFixed(2) + ' GB';
+    }
+  }
 
+  const handleRemoveImage = () => {
+    setSelectedImage(null);
+    if (imageInput.current) {
+      imageInput.current.value = '';
+    }
+  }
+ 
   return (
     <>
     <div id="gallery" className="flex flex-col mb-12">
@@ -109,10 +115,6 @@ const Gallery = () => {
         )}
       </div>
 
-
-      {/* <span className="mt-20 mb-8 font-semibold tracking-wider text-xl">
-        &mdash; Gallery
-      </span> */}
       <ul className=" columns-1 sm:columns-2 lg:columns-3 gap-8 mt-20">
         
           {posts?.map(post => {
@@ -180,42 +182,59 @@ const Gallery = () => {
         onRequestClose={closeUploadModal}
         contentLabel="Confirm Change"
         overlayClassName="modal-overlay fixed inset-0 bg-[#222] bg-opacity-80 flex items-center justify-center px-8 backdrop-blur-sm z-[999]"
-        className="bg-white p-4 py-12 rounded-lg"
+        className="bg-white p-4 py-10 rounded-lg w-full md:w-[75%] lg:w-[50%]"
       >
         <div className="text-center flex flex-col justify-between space-y-8 px-4">
-          <p className="text-sm">Upload your picture below!</p>
-          <div className="">
-            <form onSubmit={handleSendImage} 
-              className="flex flex-col space-y-4 mt-2">
-              <input
-                type="file"
-                accept="image/*"
+          <form onSubmit={() => handleSendImage}
+            className="flex flex-col items-end space-y-2 w-full">
+            <label htmlFor="dropzone-file" className="mb-4 flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 hover:bg-gray-100">
+              <div className="flex flex-col items-center justify-center pt-5 pb-6">
+                <svg className="w-8 h-8 mb-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
+                </svg>
+                <p className="mb-2 text-sm"><span className="font-semibold">Click to upload</span></p>
+                <p className="text-xs font-light">PNG, JPG, HEIC or <em>other image formats</em></p>
+              </div>
+              <input 
+                id="dropzone-file" 
+                type="file" 
+                accept='image/*'
                 ref={imageInput}
                 onChange={(event) => setSelectedImage(event.target.files![0])}
-                className="w-56"
                 disabled={selectedImage !== null}
+                className="hidden"
               />
-              {/* <select
-                id="continent"
-                placeholder='Select Continent'
-                value={imageContinent}
-                onChange={(e) => setImageContinent(e.currentTarget.value)}
-                className="text-[#222] w-fit p-1 pr-[4.2rem] rounded-full"
-              >
-                {locationOptions.map((option, index) => (
-                  <option key={index} value={option}>
-                    {option}
-                  </option>
-                ))}
-              </select> */}
-              <input
-                type="submit"
-                value="Upload"
-                disabled={selectedImage === null}
-                className="w-fit rounded-full bg-yellow-400 p-1 px-6 cursor-pointer hover:bg-yellow-300 duration-300 text-white"
-              />
-            </form>
-          </div>
+            </label>
+
+            {selectedImage !== null && ( 
+              <div className="flex items-center justify-between w-full">
+                <div className="flex items-center space-x-2">
+                  <Image  
+                    src={URL.createObjectURL(selectedImage)}
+                    alt={selectedImage.name}
+                    width="1000"
+                    height="1000"
+                    className="w-10 h-10 rounded-md border"
+                  />
+                  <p className="font-light"> 
+                    &mdash; {selectedImage.name} <span className="font-light text-xs text-neutral-500">({formatFileSize(selectedImage.size)})</span>
+                  </p>
+                </div>
+                <button onClick={() => {
+                  handleRemoveImage();
+                }}>
+                  <AiOutlineClose />
+                </button>
+              </div>
+            )}
+
+            <input
+              type="submit"
+              value="Submit"
+              disabled={selectedImage === null}
+              className="w-fit rounded-full bg-yellow-400 p-1 px-6 cursor-pointer hover:bg-yellow-300 duration-300 text-white"
+            />
+          </form> 
         </div>
       </Modal>
     </>
@@ -229,7 +248,7 @@ function Images({ post }: { post: { url?: string | null | undefined } }) {
   }
 
   return (
-    <Image src={post.url} alt={`user uploaded image`} height={1000} width={1000} className="object-cover w-fit h-full rounded-md" />
+    <Image src={post.url} alt={post.url} height={1000} width={1000} className="object-cover w-fit h-full rounded-md" />
   );
 }
 

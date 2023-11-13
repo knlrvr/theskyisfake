@@ -1,8 +1,7 @@
 import About from '@/components/about'
 import Gallery from '@/components/gallery'
 import Hero from '@/components/hero'
-import Links from '@/components/links'
-import Staff from '@/components/staff'
+
 import Image from 'next/image'
 
 export default function Home() {
@@ -12,10 +11,7 @@ export default function Home() {
       <Hero />
 
       {/* about */}
-      <About />
-
-      {/* staff picks; uncomment after restyle */}
-      {/* <Staff /> */}
+      {/* <About /> */}
 
       {/* gallery */}
       <Gallery />

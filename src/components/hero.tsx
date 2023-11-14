@@ -6,14 +6,7 @@ import Link from 'next/link'
 
 import { TfiArrowRight } from "react-icons/tfi";
 
-import { useUser, SignInButton } from '@clerk/clerk-react';
-
 const Hero = () => {
-
-  const [isUploadModalOpen, setUploadModalOpen] = useState<boolean>(false);
-
-  const { user } = useUser();
-
   return (
     <div className="mt-14 max-w-[85rem] mx-auto p-4">
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

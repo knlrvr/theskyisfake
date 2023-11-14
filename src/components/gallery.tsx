@@ -118,9 +118,9 @@ const Gallery = () => {
 
   return (
     <>
-    <div id="gallery" className="flex flex-col mb-6">
+    <div id="gallery" className="flex flex-col p-4">
 
-      <div className="m-4 h-fit rounded-xl border bg-[#222] text-white shadow-md">
+      <div className="w-full rounded-xl border bg-[#222] text-white shadow-md max-w-[83rem] mx-auto">
         <button className="h-full w-full p-4 flex flex-col space-y-8"
 
         >
@@ -145,7 +145,7 @@ const Gallery = () => {
 
       {/* search / filter options */}
 
-      <ul className=" columns-1 sm:columns-2 lg:columns-3 gap-8 mt-12 p-4">
+      <ul className="columns-1 sm:columns-2 lg:columns-3 gap-8 mt-12 max-w-[83rem] mx-auto">
         
           {posts?.map(post => {
 

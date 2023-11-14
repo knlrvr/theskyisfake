@@ -44,23 +44,6 @@ export const createPost = mutation({
   },
 });
 
-// 
-
-// Keeping below code for reference lol 
-
-
-// export const addLike = mutation({
-//   args: { post: v.id('posts'), likes: v.number() },
-//   handler: async (ctx, { post }) => {
-//     const existing = await ctx.db.get(post);
-//     const updatedLikes = (existing.likes || 0) + 1;
-
-//     await ctx.db.patch(post, { likes: updatedLikes } );
-//   }
-// })
-
-// Only allowing one like per user
-
 export const addLikeByUser = mutation({
   args: { post: v.id('posts'), userId: v.string() },
   handler: async (ctx, { post, userId }) => {
@@ -81,9 +64,10 @@ export const addLikeByUser = mutation({
 });
 
 // export const getAllPostsByUser = query({
-
+  
 // })
 
+// once location has been added => 
 // export const getAllPostsByLocation = query({
 
 // })

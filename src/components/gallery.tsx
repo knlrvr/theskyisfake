@@ -120,28 +120,32 @@ const Gallery = () => {
     <>
     <div id="gallery" className="flex flex-col mb-6">
 
-      <div className="flex flex-col bg-[#111] text-white p-8">
-        <span className="text-xl md:text-2xl font-light tracking-wider">
-          Interested in contributing? Submit your photos to be featured in our gallery below! 
-        </span>
-        {user ? (
-          <button className="w-fit mt-8 bg-yellow-200 text-[#111] px-8 py-2 rounded-full hover:bg-yellow-300 duration-300"
-            onClick={() => void setUploadModalOpen(true)}>
-            Submit A Photo
-          </button>
-          ) : (
-          <div className="mt-8">
-            <p className="text-neutral-400">
-              To upload photos, you must sign in. 
-              <span className="text-yellow-200"> <SignInButton mode='modal' afterSignInUrl='/' /> </span> now!
-            </p>
-          </div>
-        )}
+      <div className="m-4 h-fit rounded-xl border bg-[#222] text-white shadow-md">
+        <button className="h-full w-full p-4 flex flex-col space-y-8"
+
+        >
+          <p className="font-raleway tracking-wide text-3xl text-left">
+            Interested in contributing? Submit your photos to be featured in our gallery below!
+          </p>
+          {user ? (
+            <button className="w-fit mt-8 bg-orange-400 text-[#111] px-8 py-2 rounded-full hover:bg-orange-200 duration-300"
+              onClick={() => void setUploadModalOpen(true)}>
+              Submit A Photo
+            </button>
+            ) : (
+            <div className="mt-8">
+              <p className="text-neutral-400">
+                To upload photos, you must sign in. 
+                <span className="text-orange-400 hover:text-orange-200"> <SignInButton mode='modal' afterSignInUrl='/' /> </span> now!
+              </p>
+            </div>
+          )}
+        </button>
       </div>
 
       {/* search / filter options */}
 
-      <ul className=" columns-1 sm:columns-2 lg:columns-3 gap-8 mt-20">
+      <ul className=" columns-1 sm:columns-2 lg:columns-3 gap-8 mt-12 p-4">
         
           {posts?.map(post => {
 
@@ -274,7 +278,7 @@ const Gallery = () => {
                   type="submit"
                   value="Submit"
                   disabled={selectedImage === null}
-                  className="w-fit rounded-full bg-yellow-200 p-1 px-6 cursor-pointer hover:bg-yellow-300 duration-300 text-[#111]"
+                  className="w-fit rounded-full bg-orange-400 p-1 px-6 cursor-pointer hover:bg-orange-200 duration-300 text-[#111]"
                 />
               </div>
             )}

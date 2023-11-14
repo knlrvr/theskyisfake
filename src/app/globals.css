@@ -12,8 +12,17 @@
     src: url('../../public/Migra-Extralight.ttf');
 }
 
+@font-face { 
+    font-family: 'RALEWAY';
+    src: url('../../public/Raleway-VariableFont_wght.ttf')
+}
+
 * {
     scroll-behavior: smooth !important;
+}
+
+html {
+    background-color: #f5f5f5;;
 }
 
 .burger-wrapper {

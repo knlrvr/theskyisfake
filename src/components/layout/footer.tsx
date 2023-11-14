@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 const Footer = () => {
   return (
-    <div id="footer" className="flex justify-center text-xs text-neutral-500">
+    <div id="footer" className="flex justify-center text-xs text-[#222] mb-4">
       &copy; The Sky Is Fake. All Rights Reserved.
     </div>
   )

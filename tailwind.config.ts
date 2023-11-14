@@ -11,6 +11,7 @@ const config: Config = {
       fontFamily: {
         'migra': ['MIGRA', 'serif'],
         'playfair': ['PLAYFAIR', 'serif'],
+        'raleway': ['RALEWAY', 'serif'],
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

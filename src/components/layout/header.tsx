@@ -33,15 +33,13 @@ const mobileItems = [
 
 const Header = () => {
 
-  const [isNavOpen, setNavOpen] = useState<boolean>(false);
-
   const { user } = useUser();
 
   return (
-    <nav className="font-mont">
-      <div className="nav fixed top-0 inset-x-0 z-20">
+    <nav className="">
+      <div className="nav fixed top-0 inset-x-0 z-20 bg-[#f5f5f5]">
 
-        <div className="flex justify-between items-center p-4 max-w-6xl mx-auto bg-white">
+        <div className="flex justify-between items-center p-4 max-w-[85rem] mx-auto">
           <Link href="/">
             <span className="text-2xl font-migra tracking-widest">The Sky Is Fake</span>
           </Link>
@@ -58,10 +56,12 @@ const Header = () => {
               ))} */}
 
               {user ? (
-                <UserButton afterSignOutUrl='/' />
+                <UserButton afterSignOutUrl='/' 
+                  
+                />
               ) : (
-                <li className="font-semibold border border-[#333] p-1 px-2 rounded-full">
-                  <SignInButton mode='modal' afterSignInUrl='/' />
+                <li className="font-semibold border border-[#333] p-1 px-4 rounded-full">
+                  <SignInButton mode='modal' afterSignInUrl='/' >Join </SignInButton>
                 </li>
               )}
             </ul>

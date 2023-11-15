@@ -88,4 +88,33 @@ html {
 .intro-text {
     font-size: clamp(3rem, 3rem + 8vw, 8vw);
 }
+
+@keyframes clouds {
+    0%, 100% {
+      transform: translateX(-15%);
+      animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    50% {
+      transform: translateX(0);
+      animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+}
+
+@keyframes clouds-2 {
+    0%, 100% {
+      transform: translateX(15%);
+      animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    50% {
+      transform: translateX(0);
+      animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+}
+
+.clouds {
+    animation: clouds 10s infinite;
+}
   
+.clouds-2 {
+    animation: clouds-2 10s infinite;
+}

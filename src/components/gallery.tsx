@@ -117,13 +117,10 @@ const Gallery = () => {
 
   return (
     <>
-    <div id="gallery" className="flex flex-col p-4">
+    <div id="gallery" className="p-4">
 
       <Reveal>
-        <div className="w-full rounded-xl border bg-[#222] text-white shadow-md max-w-[83rem] mx-auto">
-          <button className="h-full w-full p-4 flex flex-col space-y-8"
-
-          >
+        <div className="w-full rounded-xl border bg-[#222] text-white shadow-md max-w-5xl mx-auto p-4 mb-12">
             <p className="font-light tracking-wide text-2xl text-left">
               Interested in contributing? Submit your photos to be featured in our gallery below!
             </p>
@@ -140,13 +137,12 @@ const Gallery = () => {
                 </p>
               </div>
             )}
-          </button>
         </div>
       </Reveal>
 
       {/* search / filter options */}
 
-      <ul className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-8 mt-12 max-w-[83rem] mx-auto">
+      <ul className="gap-8 max-w-5xl mx-auto columns-1 md:columns-2 lg:columns-3">
         
           {posts?.map(post => {
 

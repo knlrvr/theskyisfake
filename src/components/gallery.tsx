@@ -124,7 +124,7 @@ const Gallery = () => {
           <button className="h-full w-full p-4 flex flex-col space-y-8"
 
           >
-            <p className="font-raleway tracking-wide text-2xl text-left">
+            <p className="font-light tracking-wide text-2xl text-left">
               Interested in contributing? Submit your photos to be featured in our gallery below!
             </p>
             {user ? (

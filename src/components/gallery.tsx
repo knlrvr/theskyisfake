@@ -20,9 +20,6 @@ import {
   AiFillHeart,
 } from 'react-icons/ai'
 import {
-  BsThreeDots
-} from 'react-icons/bs'
-import {
   BiTrashAlt
 } from 'react-icons/bi'
 
@@ -128,7 +125,7 @@ const Gallery = () => {
             Interested in contributing? Submit your photos to be featured in our gallery below!
           </p>
           {user ? (
-            <button className="w-fit mt-8 bg-orange-400 text-[#111] px-8 py-2 rounded-full hover:bg-orange-200 duration-300"
+            <button className="w-fit mt-8 bg-orange-300 text-[#111] px-8 py-2 rounded-full hover:bg-orange-200 duration-300"
               onClick={() => void setUploadModalOpen(true)}>
               Submit A Photo
             </button>
@@ -136,7 +133,7 @@ const Gallery = () => {
             <div className="mt-8">
               <p className="text-neutral-400">
                 To upload photos, you must sign in. 
-                <span className="text-orange-400 hover:text-orange-200"> <SignInButton mode='modal' afterSignInUrl='/' /> </span> now!
+                <span className="text-orange-300 hover:text-orange-200"> <SignInButton mode='modal' afterSignInUrl='/' /> </span> now!
               </p>
             </div>
           )}
@@ -145,7 +142,7 @@ const Gallery = () => {
 
       {/* search / filter options */}
 
-      <ul className="columns-1 sm:columns-2 lg:columns-3 gap-8 mt-12 max-w-[83rem] mx-auto">
+      <ul className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-8 mt-12 max-w-[83rem] mx-auto">
         
           {posts?.map(post => {
 
@@ -278,7 +275,7 @@ const Gallery = () => {
                   type="submit"
                   value="Submit"
                   disabled={selectedImage === null}
-                  className="w-fit rounded-full bg-orange-400 p-1 px-6 cursor-pointer hover:bg-orange-200 duration-300 text-[#111]"
+                  className="w-fit rounded-full bg-orange-300 p-1 px-6 cursor-pointer hover:bg-orange-200 duration-300 text-[#111]"
                 />
               </div>
             )}

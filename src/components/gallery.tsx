@@ -162,63 +162,65 @@ const Gallery = () => {
             const formattedDate = date.toLocaleDateString('en-US', options);
 
             return (
-              <Reveal>
                 <li key={post._id} className="break-inside-avoid-column mb-10">
-                  <div className="flex justify-between items-center mb-2.5">
-                    <div className="flex items-center text-xs text-neutral-500 tracking-wide font-light">
-                      <p>
-                        Submitted by 
-                      </p>
-                      <span className="font-bold">
-                        &nbsp;{post.author}
-                      </span>
-                      <span className="text-xs text-neutral-400 font-light">&nbsp;&bull; {formattedDate}</span>
-                    </div>
-                    {/* <span className="">{post.location}</span> */}
-                  </div>
-                  {post.format === "image" && (
-                    <div onClick={() => openImageModal(post.url!)}>
-                      <Images post={post} />
-                    </div>
-                  )}
-
-                  {/* uncomment when likes are added */}
-                  {user && (
-                    <div className="flex items-center justify-between mt-2">
-                      <div className="text-xl flex items-center space-x-1">
-                        <button 
-                        onClick={() => {
-                          const userId = user.id;
-                          likeByUser({ post: post._id, userId })
-                        }} 
-                        >
-                          {(Array.isArray(post.likes) && post.likes.includes(user.id)) ? (
-                            <AiFillHeart className="text-red-600" />
-                          ) : (
-                            <AiOutlineHeart className="" />
-                          )}
-                        </button>
-                        <span className="text-sm font-light">{post.likes.length}</span>
+                  <Reveal>
+                    <div>
+                      <div className="flex justify-between items-center mb-2.5">
+                        <div className="flex items-center text-xs text-neutral-500 tracking-wide font-light">
+                          <p>
+                            Submitted by 
+                          </p>
+                          <span className="font-bold">
+                            &nbsp;{post.author}
+                          </span>
+                          <span className="text-xs text-neutral-400 font-light">&nbsp;&bull; {formattedDate}</span>
+                        </div>
+                        {/* <span className="">{post.location}</span> */}
                       </div>
-
-                      {user?.id === post.userName && (
-                        <div className="relative">
-                            <button
-                              onClick={() => {
-                              setDeleteModalOpen(true);
-                              setSelectedPost(post._id);
-                              // deletePost({ post: post._id })
-                            }}
-                              className="rounded-lg rounded-tr-none flex items-center space-x-2 text-lg text-neutral-500">
-                              <BiTrashAlt className="" />
-                            </button>
+                      {post.format === "image" && (
+                        <div onClick={() => openImageModal(post.url!)}>
+                          <Images post={post} />
                         </div>
                       )}
 
+                      {/* uncomment when likes are added */}
+                      {user && (
+                        <div className="flex items-center justify-between mt-2">
+                          <div className="text-xl flex items-center space-x-1">
+                            <button 
+                            onClick={() => {
+                              const userId = user.id;
+                              likeByUser({ post: post._id, userId })
+                            }} 
+                            >
+                              {(Array.isArray(post.likes) && post.likes.includes(user.id)) ? (
+                                <AiFillHeart className="text-red-600" />
+                              ) : (
+                                <AiOutlineHeart className="" />
+                              )}
+                            </button>
+                            <span className="text-sm font-light">{post.likes.length}</span>
+                          </div>
+
+                          {user?.id === post.userName && (
+                            <div className="relative">
+                                <button
+                                  onClick={() => {
+                                  setDeleteModalOpen(true);
+                                  setSelectedPost(post._id);
+                                  // deletePost({ post: post._id })
+                                }}
+                                  className="rounded-lg rounded-tr-none flex items-center space-x-2 text-lg text-neutral-500">
+                                  <BiTrashAlt className="" />
+                                </button>
+                            </div>
+                          )}
+
+                        </div>
+                      )}
                     </div>
-                  )}
-              </li>
-            </Reveal>
+                  </Reveal>
+                </li>
             )
           })}
       </ul>

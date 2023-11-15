@@ -11,7 +11,7 @@ import {
 
 const Hero = () => {
   return (
-    <div className="mt-16 mb-8 md:mb-14 max-w-[85rem] mx-auto p-4">
+    <div className="mt-16 mb-8 md:mb-14 max-w-[85rem] mx-auto">
       
       <div className="mt-14 mb-8 md:mb-14 max-w-[85rem] mx-auto p-4">
        <div className="flex flex-col -space-y-4 md:-space-y-2 font-migra mt-16">
@@ -45,7 +45,7 @@ const Hero = () => {
            <div className="flex flex-col items-center justify-center font-bold p-4 tracking-widest">
              <p className="flex items-center text-[2rem] md:text-6xl lg:text-7xl xl:text-8xl">
                where you need it
-               <TfiFaceSmile className="ml-2 md:ml-4 mb-2 text-2xl md:text-3xl lg:text-4xl xl:text-6xl" />
+               <TfiFaceSmile className="ml-1 md:ml-4 mb-2 text-2xl md:text-3xl lg:text-4xl xl:text-6xl" />
              </p>
            </div>
          </Reveal>

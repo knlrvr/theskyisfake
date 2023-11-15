@@ -6,6 +6,8 @@ import { SignInButton, useUser } from '@clerk/clerk-react'
 import { api } from '../../convex/_generated/api';
 import { useMutation, useQuery } from 'convex/react';
 
+import { Reveal } from './utils/reveal';
+
 import Image from 'next/image'
 
 // modal 
@@ -117,28 +119,30 @@ const Gallery = () => {
     <>
     <div id="gallery" className="flex flex-col p-4">
 
-      <div className="w-full rounded-xl border bg-[#222] text-white shadow-md max-w-[83rem] mx-auto">
-        <button className="h-full w-full p-4 flex flex-col space-y-8"
+      <Reveal>
+        <div className="w-full rounded-xl border bg-[#222] text-white shadow-md max-w-[83rem] mx-auto">
+          <button className="h-full w-full p-4 flex flex-col space-y-8"
 
-        >
-          <p className="font-raleway tracking-wide text-3xl text-left">
-            Interested in contributing? Submit your photos to be featured in our gallery below!
-          </p>
-          {user ? (
-            <button className="w-fit mt-8 bg-orange-300 text-[#111] px-8 py-2 rounded-full hover:bg-orange-200 duration-300"
-              onClick={() => void setUploadModalOpen(true)}>
-              Submit A Photo
-            </button>
-            ) : (
-            <div className="mt-8">
-              <p className="text-neutral-400">
-                To upload photos, you must sign in. 
-                <span className="text-orange-300 hover:text-orange-200"> <SignInButton mode='modal' afterSignInUrl='/' /> </span> now!
-              </p>
-            </div>
-          )}
-        </button>
-      </div>
+          >
+            <p className="font-raleway tracking-wide text-2xl text-left">
+              Interested in contributing? Submit your photos to be featured in our gallery below!
+            </p>
+            {user ? (
+              <button className="w-fit mt-8 bg-orange-300 text-[#111] px-8 py-2 rounded-full hover:bg-orange-200 duration-300"
+                onClick={() => void setUploadModalOpen(true)}>
+                Submit A Photo
+              </button>
+              ) : (
+              <div className="mt-8">
+                <p className="text-neutral-500 text-left">
+                  To upload photos, you must sign in. <br /> 
+                  <span className="text-neutral-200 hover:text-orange-300 duration-300"> <SignInButton mode='modal' afterSignInUrl='/' /> </span> now!
+                </p>
+              </div>
+            )}
+          </button>
+        </div>
+      </Reveal>
 
       {/* search / filter options */}
 
@@ -158,7 +162,8 @@ const Gallery = () => {
             const formattedDate = date.toLocaleDateString('en-US', options);
 
             return (
-              <li key={post._id} className="break-inside-avoid-column mb-10">
+              <Reveal>
+                <li key={post._id} className="break-inside-avoid-column mb-10">
                   <div className="flex justify-between items-center mb-2.5">
                     <div className="flex items-center text-xs text-neutral-500 tracking-wide font-light">
                       <p>
@@ -213,6 +218,7 @@ const Gallery = () => {
                     </div>
                   )}
               </li>
+            </Reveal>
             )
           })}
       </ul>

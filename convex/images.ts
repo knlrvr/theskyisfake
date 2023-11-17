@@ -30,7 +30,6 @@ export const createPost = mutation({
   args: { 
     storageId: v.string(), 
     userName: v.string(),
-    userImg: v.string(),
     author: v.string(), 
     likes: v.number(),
   },
@@ -38,7 +37,6 @@ export const createPost = mutation({
     await ctx.db.insert("posts", {
       body: args.storageId,
       userName: args.userName,
-      userImg: args.userImg,
       author: args.author,
       format: "image",
       likes: 0,

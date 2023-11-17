@@ -70,7 +70,6 @@ const Gallery = () => {
     await uploadImage({ 
       storageId, 
       userName: clerkUser as string,
-      userImg: user?.imageUrl as string,
       author: name,
       likes: 0,
     });

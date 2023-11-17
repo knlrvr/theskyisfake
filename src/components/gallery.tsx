@@ -387,9 +387,9 @@ const Gallery = () => {
         className="focus:outline-none bg-white rounded-lg w-full h-fit flex flex-col items-center max-w-2xl relative p-10"
       >
         <div className="flex flex-col space-y-2">
-          <span className="font-migra text-2xl tracking-wide">We're working on it!</span>
+          <span className="font-migra text-2xl tracking-wide">We&apos;re working on it!</span>
           <span className="text-sm font-light">
-            Unfortunately, the search feature isn't available just yet! Please check back soon!
+            Unfortunately, the search feature isn&apos;t available just yet! Please check back soon!
           </span>
 
           <div className="flex justify-end font-light">

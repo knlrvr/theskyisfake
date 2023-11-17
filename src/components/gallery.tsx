@@ -24,6 +24,10 @@ import {
 import {
   BiTrashAlt
 } from 'react-icons/bi'
+import { 
+  FaChartSimple
+} from "react-icons/fa6";
+
 
 const Gallery = () => {
 
@@ -31,6 +35,7 @@ const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [expandedImageUrl, setExpandedImageUrl] = useState<string>('');
   const [isDeleteModalOpen, setDeleteModalOpen] = useState<boolean>(false);
+  const [isSearchModalOpen, setSearchModalOpen] = useState<boolean>(false);
 
   const [selectedPost, setSelectedPost] = useState(null);
 
@@ -65,6 +70,7 @@ const Gallery = () => {
     await uploadImage({ 
       storageId, 
       userName: clerkUser as string,
+      userImg: user?.imageUrl as string,
       author: name,
       likes: 0,
     });
@@ -115,17 +121,25 @@ const Gallery = () => {
     }
   };
 
+  const handleSearch = () => {
+    setSearchModalOpen(true);
+  }
+
+  const closeSearchModal = () => {
+    setSearchModalOpen(false);
+  }
+
   return (
     <>
     <div id="gallery" className="p-4">
 
       <Reveal>
-        <div className="w-full rounded-xl border bg-[#222] text-white shadow-md max-w-5xl mx-auto p-4 mb-12">
+        <div className="w-full rounded-3xl bg-neutral-900 text-white shadow-lg max-w-5xl mx-auto p-8">
             <p className="font-light tracking-wide text-2xl text-left">
               Interested in contributing? Submit your photos to be featured in our gallery below!
             </p>
             {user ? (
-              <button className="w-fit mt-8 bg-orange-300 text-[#111] px-8 py-2 rounded-full hover:bg-orange-200 duration-300"
+              <button className="w-fit mt-8 bg-orange-300 text-[#111] px-8 py-2 rounded-xl hover:bg-orange-400 duration-300 font-light"
                 onClick={() => void setUploadModalOpen(true)}>
                 Submit A Photo
               </button>
@@ -133,17 +147,37 @@ const Gallery = () => {
               <div className="mt-8">
                 <p className="text-neutral-500 text-left">
                   To upload photos, you must sign in. <br /> 
-                  <span className="text-neutral-200 hover:text-orange-300 duration-300"> <SignInButton mode='modal' afterSignInUrl='/' /> </span> now!
+                  <span className="text-neutral-200 hover:text-orange-400 duration-300"> <SignInButton mode='modal' afterSignInUrl='/' /> </span> now!
                 </p>
               </div>
             )}
         </div>
       </Reveal>
 
+      <Reveal>
+        <div className="mt-12 mb-6 max-w-5xl mx-auto">   
+          <label htmlFor="default-search" className="mb-2 text-sm font-medium sr-only">Search</label>
+            <div className="relative">
+                <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                    <svg className="w-4 h-4 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                    </svg>
+                </div>
+                <input 
+                  type="text" 
+                  id="default-search" 
+                  className="block w-full p-4 ps-10 text-sm border border-gray-300 rounded-lg bg-gray-50 focus:ring-orange-500 bg-transparent focus:border-orange-500" 
+                  placeholder="Search Images" 
+                  required 
+                />
+                <button onClick={handleSearch} className="text-[#222] absolute end-2.5 bottom-2.5 bg-orange-300 hover:bg-orange-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-light rounded-md text-sm px-4 py-2 duration-300">Search</button>
+            </div>
+        </div>
+      </Reveal>
+
       {/* search / filter options */}
 
-      <ul className="gap-8 max-w-5xl mx-auto columns-1 md:columns-2 lg:columns-3">
-        
+      <ul className="gap-8 max-w-5xl mx-auto columns-1 md:columns-2 lg:columns-3 rounded-3xl">
           {posts?.map(post => {
 
             const creationTimeMs = post._creationTime;
@@ -158,14 +192,12 @@ const Gallery = () => {
             const formattedDate = date.toLocaleDateString('en-US', options);
 
             return (
-                <li key={post._id} className="break-inside-avoid-column mb-10">
+                <li key={post._id} className="break-inside-avoid-column py-4">
                   <Reveal>
-                    <div>
+                    <div className="">
                       <div className="flex justify-between items-center mb-2.5">
                         <div className="flex items-center text-xs text-neutral-500 tracking-wide font-light">
-                          <p>
-                            Submitted by 
-                          </p>
+  
                           <span className="font-bold">
                             &nbsp;{post.author}
                           </span>
@@ -333,7 +365,7 @@ const Gallery = () => {
           </span>
 
           <div className="flex justify-evenly font-light">
-            <button className="border border-[#222] px-4 py-1 rounded-md hover:text-neutral-500  hover:border-neutral-500"
+            <button className="border border-[#222] px-4 py-1 rounded-md hover:text-neutral-400  hover:border-neutral-400"
               onClick={() => {
               setDeleteModalOpen(false);
             }}>
@@ -342,6 +374,31 @@ const Gallery = () => {
             <button className="px-4 py-1 rounded-md bg-red-400 text-white hover:bg-red-600 duration-300"
               onClick={deleteSelectedPost}>
               delete
+            </button>
+          </div>
+        </div>
+      </Modal>
+
+      {/* Search Modal */}
+      <Modal
+        isOpen={isSearchModalOpen}
+        onRequestClose={closeSearchModal}
+        contentLabel="Delete Image"
+        overlayClassName="modal-overlay fixed inset-0 bg-[#111] bg-opacity-90 flex items-center justify-center backdrop-blur-sm z-[999] p-2 md:p-20"
+        className="focus:outline-none bg-white rounded-lg w-full h-fit flex flex-col items-center max-w-2xl relative p-10"
+      >
+        <div className="flex flex-col space-y-2">
+          <span className="font-migra text-2xl tracking-wide">We're working on it!</span>
+          <span className="text-sm font-light">
+            Unfortunately, the search feature isn't available just yet! Please check back soon!
+          </span>
+
+          <div className="flex justify-end font-light">
+            <button className="mt-4 border border-[#222] px-4 py-1 rounded-md hover:text-neutral-400  hover:border-neutral-400"
+              onClick={() => {
+              setSearchModalOpen(false);
+            }}>
+              Close
             </button>
           </div>
         </div>
@@ -357,7 +414,7 @@ function Images({ post }: { post: { url?: string | null | undefined } }) {
   }
 
   return (
-    <Image src={post.url} alt={post.url} height={1000} width={1000} className="object-cover w-fit h-full rounded-md cursor-pointer" />
+    <Image src={post.url} alt={post.url} height={1000} width={1000} className="object-cover object-center rounded-2xl cursor-pointer h-fit w-full shadow-lg" />
   );
 }
 

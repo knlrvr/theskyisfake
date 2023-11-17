@@ -21,7 +21,6 @@ const Hero = () => {
                All
              </p>
 
-             {/* will change to divs w gradient bg instead of imgs since they're just gradients now anyway lol */}
              <div className="inline-flex items-center px-2 md:px-4 lg:px-6 mb-2 md:mb-3 -space-x-4">
                <div className="h-8 w-8 md:h-14 md:w-14 lg:h-[4.5rem] lg:w-[4.5rem] rounded-full bg-gradient-to-b from-red-500 to-blue-400 border-2 lg:border-4 border-white"></div>
                <div className="h-8 w-8 md:h-14 md:w-14 lg:h-[4.5rem] lg:w-[4.5rem] rounded-full bg-gradient-to-b from-yellow-500 to-pink-400 border-2 lg:border-4 border-white"></div>

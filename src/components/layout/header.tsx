@@ -36,9 +36,9 @@ const Header = () => {
           <Link href="/"
             className="flex items-center">
              <div className="inline-flex items-center -space-x-4 mr-2">
-               <div className="h-8 w-8 rounded-full bg-gradient-to-b from-red-500 to-blue-400 border-2 lg:border-4 border-white"></div>
-               <div className="h-8 w-8 rounded-full bg-gradient-to-b from-yellow-500 to-pink-400 border-2 lg:border-4 border-white"></div>
-               <div className="h-8 w-8 rounded-full bg-gradient-to-b from-orange-500 to-teal-200 border-2 lg:border-4 border-white"></div>
+               <div className="h-8 w-8 rounded-full bg-gradient-to-b from-red-500 to-blue-400 border-2  border-white"></div>
+               <div className="h-8 w-8 rounded-full bg-gradient-to-b from-yellow-500 to-pink-400 border-2  border-white"></div>
+               <div className="h-8 w-8 rounded-full bg-gradient-to-b from-orange-500 to-teal-200 border-2  border-white"></div>
              </div>
             <span className="font-migra mt-1 text-xl">The Sky Is Fake</span>
           </Link>

@@ -25,7 +25,7 @@ import {
   BiTrashAlt
 } from 'react-icons/bi'
 import { 
-  FaChartSimple
+  FaChartSimple, FaCircleExclamation, FaExclamation
 } from "react-icons/fa6";
 
 
@@ -138,10 +138,14 @@ const Gallery = () => {
               Interested in contributing? Submit your photos to be featured in our gallery below!
             </p>
             {user ? (
-              <button className="w-fit mt-8 bg-orange-300 text-[#111] px-8 py-2 rounded-xl hover:bg-orange-400 duration-300 font-light"
-                onClick={() => void setUploadModalOpen(true)}>
-                Submit A Photo
-              </button>
+              // <button className="w-fit mt-8 bg-orange-300 text-[#111] px-8 py-2 rounded-xl hover:bg-orange-400 duration-300 font-light"
+              //   onClick={() => void setUploadModalOpen(true)}>
+              //   Submit A Photo
+              // </button>
+              <div className="flex space-x-2 items-center mt-8">
+                <FaCircleExclamation className="text-red-400" />
+                <p className="font-light text-neutral-500">The upload feature is currently unavailable. Please try again later.</p>
+              </div>
               ) : (
               <div className="mt-8">
                 <p className="text-neutral-500 text-left">

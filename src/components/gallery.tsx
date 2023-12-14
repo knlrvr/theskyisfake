@@ -7,7 +7,6 @@ import { api } from '../../convex/_generated/api';
 import { useMutation, useQuery } from 'convex/react';
 
 import { Reveal } from './utils/reveal';
-
 import Image from 'next/image'
 
 // modal 
@@ -24,10 +23,6 @@ import {
 import {
   BiTrashAlt
 } from 'react-icons/bi'
-import { 
-  FaChartSimple, FaCircleExclamation, FaExclamation
-} from "react-icons/fa6";
-
 
 const Gallery = () => {
 
@@ -38,10 +33,13 @@ const Gallery = () => {
   const [isSearchModalOpen, setSearchModalOpen] = useState<boolean>(false);
 
   const [selectedPost, setSelectedPost] = useState(null);
+  const [selectedFile, setSelectedFile] = useState(null);
 
   const posts = useQuery(api.images.getPosts) ?? [];
   const likeByUser = useMutation(api.images.addLikeByUser);
   const deletePost = useMutation(api.images.deletePostById);
+
+  const deleteFile = useMutation(api.images.deleteFileById);
 
   const { user } = useUser();
   const name = user?.fullName as string;
@@ -113,10 +111,15 @@ const Gallery = () => {
     setDeleteModalOpen(false);
   }
 
+  const deleteSelectedFile = () => {
+    if (selectedFile !== null) {
+      deleteFile({ storageId: selectedFile  })
+    }
+  };
+
   const deleteSelectedPost = () => {
     if (selectedPost !== null) {
       deletePost({ post: selectedPost })
-      setDeleteModalOpen(false);
     }
   };
 
@@ -138,16 +141,16 @@ const Gallery = () => {
               Interested in contributing? Submit your photos to be featured in our gallery below!
             </p>
             {user ? (
-              // <button className="w-fit mt-8 bg-orange-300 text-[#111] px-8 py-2 rounded-xl hover:bg-orange-400 duration-300 font-light"
-              //   onClick={() => void setUploadModalOpen(true)}>
-              //   Submit A Photo
-              // </button>
-              <div className="mt-10">
-                <div className="font-light text-neutral-500 text-sm">
-                  <span className="h-2 w-2 rounded-full bg-red-500 inline-flex mr-2"></span>
-                  The upload feature is currently unavailable due to system maintenance. Please check back later. We apologize for the inconvenience!
-                </div>
-              </div>
+              <button className="w-fit mt-8 bg-orange-300 text-[#111] px-8 py-2 rounded-xl hover:bg-orange-400 duration-300 font-light"
+                onClick={() => void setUploadModalOpen(true)}>
+                Submit A Photo
+              </button>
+              // <div className="mt-10">
+              //   <div className="font-light text-neutral-500 text-sm">
+              //     <span className="h-2 w-2 rounded-full bg-red-500 inline-flex mr-2"></span>
+              //     The upload feature is currently unavailable due to system maintenance. Please check back later. We apologize for the inconvenience!
+              //   </div>
+              // </div>
               ) : (
               <div className="mt-8">
                 <p className="text-neutral-500 text-left">
@@ -241,6 +244,7 @@ const Gallery = () => {
                                   onClick={() => {
                                   setDeleteModalOpen(true);
                                   setSelectedPost(post._id);
+                                  setSelectedFile(post.body);
                                   // deletePost({ post: post._id })
                                 }}
                                   className="rounded-lg rounded-tr-none flex items-center space-x-2 text-lg text-neutral-500">
@@ -377,7 +381,11 @@ const Gallery = () => {
               cancel
             </button>
             <button className="px-4 py-1 rounded-md bg-red-400 text-white hover:bg-red-600 duration-300"
-              onClick={deleteSelectedPost}>
+              onClick={() => {
+                deleteSelectedPost();
+                deleteSelectedFile();
+                closeDeleteModal();
+              }}>
               delete
             </button>
           </div>

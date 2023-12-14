@@ -1,4 +1,5 @@
 import { v } from "convex/values";
+import { Id } from "./_generated/dataModel";
 import { query } from "./_generated/server";
 
 export const getPosts = query({
@@ -73,10 +74,23 @@ export const addLikeByUser = mutation({
 // })
 
 export const deletePostById = mutation({
-  args: { post: v.id('posts') },
+  args: { 
+    post: v.id('posts'), 
+  },
   handler: async (ctx, { post }) => {
     // const storageId = await ctx.db.get(post);
-    return await ctx.db.delete(post)
-  }
-})
+    return await ctx.db.delete(
+      post
+    )
+  },
+});
 
+
+export const deleteFileById = mutation({
+  args: {
+    storageId: v.id('_storage'),
+  },
+  handler: async (ctx, args) => {
+    return await ctx.storage.delete(args.storageId);
+  },
+});

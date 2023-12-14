@@ -370,7 +370,7 @@ const Gallery = () => {
       >
         <div className="flex flex-col space-y-8">
           <span className="text-sm font-light">
-            Are you sure you want to delete this picture? This cannot be undone.
+            Are you sure you want to delete this picture? This action cannot be undone.
           </span>
 
           <div className="flex justify-evenly font-light">

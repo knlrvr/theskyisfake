@@ -142,9 +142,11 @@ const Gallery = () => {
               //   onClick={() => void setUploadModalOpen(true)}>
               //   Submit A Photo
               // </button>
-              <div className="flex space-x-2 items-center mt-8">
-                <FaCircleExclamation className="text-red-400" />
-                <p className="font-light text-neutral-500">The upload feature is currently unavailable. Please try again later.</p>
+              <div className="mt-10">
+                <div className="font-light text-neutral-500 text-sm">
+                  <span className="h-2 w-2 rounded-full bg-red-500 inline-flex mr-2"></span>
+                  The upload feature is currently unavailable due to system maintenance. Please check back later. We apologize for the inconvenience!
+                </div>
               </div>
               ) : (
               <div className="mt-8">

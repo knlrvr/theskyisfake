@@ -25,5 +25,3 @@ You can see my personal favorites on my portfolio at [knlrvr.dev](https://www.kn
 <a name="notes"></a>
 ## Notes
 > This is an ongoing project and will be updated regularly! More features are coming to iron this project out, so stay tuned!
-> 
-> 12/14/23 - The upload feature has been temporarily disabled pending further review of bug. 
